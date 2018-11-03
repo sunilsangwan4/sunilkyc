@@ -1,0 +1,11 @@
+version: '2'
+services:
+    kyc5-postgresql:
+        image: postgres:10.4
+        # volumes:
+        #     - ~/volumes/jhipster/kyc5/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=kyc5
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

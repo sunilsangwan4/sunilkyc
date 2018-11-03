@@ -1,0 +1,149 @@
+
+
+entity GroupCd{
+	groupCd String required minlength(3) maxlength(10)
+}
+
+entity TypeCd{
+	typeCd String required required minlength(3) maxlength(20)
+	typeDescription String required maxlength(250)
+}
+entity TokenVerification{
+	mobileNo String required minlength(10) maxlength(10) unique ,
+	token String  minlength(6) maxlength(6),
+	status String 
+}
+
+entity EmailVerification{
+	emailId String required minlength(10) maxlength(10) unique ,
+	token String  minlength(6) maxlength(6),
+	status String 
+}
+
+entity ApplicationProspect{   fullname <token></token>
+	fullName String required minlength(3) maxlength(32),
+	mobileNo String required minlength(10) maxlength(10) unique ,
+    email String required minlength(5) maxlength(32) unique,
+	password String required minlength(8) maxlength(20),
+	confirmPassword String required minlength(8) maxlength(20)
+}
+
+entity IdentityVerification{
+ adhaarNo String required minlength(12) maxlength(12) unique,
+ aadharNoVerified Boolean,
+ panNo String required minlength(10) maxlength(10) unique,
+ panNoVerified Boolean,
+ dateOfBirth LocalDate required
+}
+
+entity Address{
+	addressLine1 String required ,
+	addressLine2 String,
+	addressLine3 String,
+	state String required,
+	city String required,
+	pinCode String required minlength(6) maxlength(6),
+	country String required,
+	addressType String
+}
+
+entity BankInformation{
+	bankName String required,
+	ifscCode String required minlength(11) maxlength(11),
+	micrCode String required ,
+	branchName String required,
+	accountType String required,
+	accountNumber String required,
+	accountHolderName String required,
+	bankAccountCommon Boolean,
+	segementTypeCd String
+}
+entity PersonalInformation{
+	fatherName String required,
+    motherName String required,
+    gender String required, 
+    nationality String required,
+    maritalStatus String required,
+    indianTaxPayer  String required,
+    birthCountry String required,
+    birthCity String required, 
+    jurisdictionCountry String required,
+    taxIdentificationNo String required
+    
+}
+
+
+entity InvestmentPotential{
+	educationQualification String required,
+	occupation String required,
+	annualIncome Float,
+	netWorth Double required,
+	networthDeclarationDate LocalDate required,
+	pepRelative String required,
+	pmlaRiskCategory String required,
+	pmlaRiskCategoryReason String required
+}
+
+entity Nominee{
+	nomineeName String required,
+	relationShip String required,
+	dateOfBirth LocalDate required,
+	guardianName String required
+
+}
+
+entity TradingInfo{
+	segmentCd String required,
+	planCdEquity String required,
+	planCdCommodity String required,
+	contractNoteMode String required,
+	tradingMode String required,
+	interestedInMobileTradeing Boolean required,
+	accountAuthFrequency String required,
+	experienceYear Integer required,
+	experienceMonth Integer required 
+}
+
+entity DepositoryInfo{
+	haveAccountWithOtherDP Boolean required,
+	haveSMSEnabled Boolean required,
+	statementFrequency String required,
+	dpScheme String required,
+	depositoryName String required,
+	brokerName String required,
+	nameAsPerDemat String required
+}
+
+relationship OneToOne {
+	ApplicationProspect{personalInformation} to PersonalInformation{applicationProspect},
+    ApplicationProspect{investmentPotential} to InvestmentPotential{applicationProspect},
+	ApplicationProspect{nominee} to Nominee{applicationProspect},
+	
+	ApplicationProspect{tradingInfo}  to TradingInfo{applicationProspect},
+	ApplicationProspect{depository} to DepositoryInfo{applicationProspect}
+    
+   
+    
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	 ApplicationProspect{addresses} to Address{applicationProspect},
+     ApplicationProspect{bankInformation} to BankInformation{applicationProspect},
+     Nominee{address} to Address{nominee}
+	 GroupCd{typeCd} to TypeCd{groupCd}
+}
+
+
+
+
+
+paginate ApplicationProspect with pagination
+
+dto * with mapstruct
+
+service all with serviceImpl
+
+filter * 
+
+
