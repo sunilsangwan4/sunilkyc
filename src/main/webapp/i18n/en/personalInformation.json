@@ -1,0 +1,32 @@
+
+{
+    "kyc5App": {
+        "personalInformation" : {
+            "home": {
+                "title": "Personal Informations",
+                "createLabel": "Create a new Personal Information",
+                "createOrEditLabel": "Create or edit a Personal Information"
+            },
+            "created": "A new Personal Information is created with identifier {{ param }}",
+            "updated": "A Personal Information is updated with identifier {{ param }}",
+            "deleted": "A Personal Information is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Personal Information {{ id }}?"
+            },
+            "detail": {
+                "title": "Personal Information"
+            },
+            "fatherName": "Father Name",
+            "motherName": "Mother Name",
+            "gender": "Gender",
+            "nationality": "Nationality",
+            "maritalStatus": "Marital Status",
+            "indianTaxPayer": "Indian Tax Payer",
+            "birthCountry": "Birth Country",
+            "birthCity": "Birth City",
+            "jurisdictionCountry": "Jurisdiction Country",
+            "taxIdentificationNo": "Tax Identification No",
+            "applicationProspect": "Application Prospect"
+        }
+    }
+}

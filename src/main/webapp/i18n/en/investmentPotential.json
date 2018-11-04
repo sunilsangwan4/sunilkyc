@@ -1,0 +1,30 @@
+
+{
+    "kyc5App": {
+        "investmentPotential" : {
+            "home": {
+                "title": "Investment Potentials",
+                "createLabel": "Create a new Investment Potential",
+                "createOrEditLabel": "Create or edit a Investment Potential"
+            },
+            "created": "A new Investment Potential is created with identifier {{ param }}",
+            "updated": "A Investment Potential is updated with identifier {{ param }}",
+            "deleted": "A Investment Potential is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Investment Potential {{ id }}?"
+            },
+            "detail": {
+                "title": "Investment Potential"
+            },
+            "educationQualification": "Education Qualification",
+            "occupation": "Occupation",
+            "annualIncome": "Annual Income",
+            "netWorth": "Net Worth",
+            "networthDeclarationDate": "Networth Declaration Date",
+            "pepRelative": "Pep Relative",
+            "pmlaRiskCategory": "Pmla Risk Category",
+            "pmlaRiskCategoryReason": "Pmla Risk Category Reason",
+            "applicationProspect": "Application Prospect"
+        }
+    }
+}

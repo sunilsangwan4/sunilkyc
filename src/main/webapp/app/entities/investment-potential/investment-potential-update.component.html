@@ -1,0 +1,115 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-investment-potential-heading" jhiTranslate="kyc5App.investmentPotential.home.createOrEditLabel">Create or edit a Investment Potential</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!investmentPotential.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="investmentPotential.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.investmentPotential.educationQualification" for="field_educationQualification">Education Qualification</label>
+                    <input type="text" class="form-control" name="educationQualification" id="field_educationQualification"
+                        [(ngModel)]="investmentPotential.educationQualification" required/>
+                    <div [hidden]="!(editForm.controls.educationQualification?.dirty && editForm.controls.educationQualification?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.educationQualification?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.investmentPotential.occupation" for="field_occupation">Occupation</label>
+                    <input type="text" class="form-control" name="occupation" id="field_occupation"
+                        [(ngModel)]="investmentPotential.occupation" required/>
+                    <div [hidden]="!(editForm.controls.occupation?.dirty && editForm.controls.occupation?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.occupation?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.investmentPotential.annualIncome" for="field_annualIncome">Annual Income</label>
+                    <input type="number" class="form-control" name="annualIncome" id="field_annualIncome"
+                        [(ngModel)]="investmentPotential.annualIncome" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.investmentPotential.netWorth" for="field_netWorth">Net Worth</label>
+                    <input type="number" class="form-control" name="netWorth" id="field_netWorth"
+                        [(ngModel)]="investmentPotential.netWorth" required/>
+                    <div [hidden]="!(editForm.controls.netWorth?.dirty && editForm.controls.netWorth?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.netWorth?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.netWorth?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.investmentPotential.networthDeclarationDate" for="field_networthDeclarationDate">Networth Declaration Date</label>
+                    <div class="input-group">
+                        <input id="field_networthDeclarationDate" type="text" class="form-control" name="networthDeclarationDate" ngbDatepicker  #networthDeclarationDateDp="ngbDatepicker" [(ngModel)]="investmentPotential.networthDeclarationDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="networthDeclarationDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.networthDeclarationDate?.dirty && editForm.controls.networthDeclarationDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.networthDeclarationDate?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.investmentPotential.pepRelative" for="field_pepRelative">Pep Relative</label>
+                    <input type="text" class="form-control" name="pepRelative" id="field_pepRelative"
+                        [(ngModel)]="investmentPotential.pepRelative" required/>
+                    <div [hidden]="!(editForm.controls.pepRelative?.dirty && editForm.controls.pepRelative?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pepRelative?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.investmentPotential.pmlaRiskCategory" for="field_pmlaRiskCategory">Pmla Risk Category</label>
+                    <input type="text" class="form-control" name="pmlaRiskCategory" id="field_pmlaRiskCategory"
+                        [(ngModel)]="investmentPotential.pmlaRiskCategory" required/>
+                    <div [hidden]="!(editForm.controls.pmlaRiskCategory?.dirty && editForm.controls.pmlaRiskCategory?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pmlaRiskCategory?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.investmentPotential.pmlaRiskCategoryReason" for="field_pmlaRiskCategoryReason">Pmla Risk Category Reason</label>
+                    <input type="text" class="form-control" name="pmlaRiskCategoryReason" id="field_pmlaRiskCategoryReason"
+                        [(ngModel)]="investmentPotential.pmlaRiskCategoryReason" required/>
+                    <div [hidden]="!(editForm.controls.pmlaRiskCategoryReason?.dirty && editForm.controls.pmlaRiskCategoryReason?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pmlaRiskCategoryReason?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-depository-info-heading" jhiTranslate="kyc5App.depositoryInfo.home.createOrEditLabel">Create or edit a Depository Info</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!depositoryInfo.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="depositoryInfo.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.depositoryInfo.haveAccountWithOtherDP" for="field_haveAccountWithOtherDP">Have Account With Other DP</label>
+                    <input type="checkbox" class="form-control" name="haveAccountWithOtherDP" id="field_haveAccountWithOtherDP"
+                        [(ngModel)]="depositoryInfo.haveAccountWithOtherDP" />
+                    <div [hidden]="!(editForm.controls.haveAccountWithOtherDP?.dirty && editForm.controls.haveAccountWithOtherDP?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.haveAccountWithOtherDP?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.depositoryInfo.haveSMSEnabled" for="field_haveSMSEnabled">Have SMS Enabled</label>
+                    <input type="checkbox" class="form-control" name="haveSMSEnabled" id="field_haveSMSEnabled"
+                        [(ngModel)]="depositoryInfo.haveSMSEnabled" />
+                    <div [hidden]="!(editForm.controls.haveSMSEnabled?.dirty && editForm.controls.haveSMSEnabled?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.haveSMSEnabled?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.depositoryInfo.statementFrequency" for="field_statementFrequency">Statement Frequency</label>
+                    <input type="text" class="form-control" name="statementFrequency" id="field_statementFrequency"
+                        [(ngModel)]="depositoryInfo.statementFrequency" required/>
+                    <div [hidden]="!(editForm.controls.statementFrequency?.dirty && editForm.controls.statementFrequency?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.statementFrequency?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.depositoryInfo.dpScheme" for="field_dpScheme">Dp Scheme</label>
+                    <input type="text" class="form-control" name="dpScheme" id="field_dpScheme"
+                        [(ngModel)]="depositoryInfo.dpScheme" required/>
+                    <div [hidden]="!(editForm.controls.dpScheme?.dirty && editForm.controls.dpScheme?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dpScheme?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.depositoryInfo.depositoryName" for="field_depositoryName">Depository Name</label>
+                    <input type="text" class="form-control" name="depositoryName" id="field_depositoryName"
+                        [(ngModel)]="depositoryInfo.depositoryName" required/>
+                    <div [hidden]="!(editForm.controls.depositoryName?.dirty && editForm.controls.depositoryName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.depositoryName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.depositoryInfo.brokerName" for="field_brokerName">Broker Name</label>
+                    <input type="text" class="form-control" name="brokerName" id="field_brokerName"
+                        [(ngModel)]="depositoryInfo.brokerName" required/>
+                    <div [hidden]="!(editForm.controls.brokerName?.dirty && editForm.controls.brokerName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.brokerName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.depositoryInfo.nameAsPerDemat" for="field_nameAsPerDemat">Name As Per Demat</label>
+                    <input type="text" class="form-control" name="nameAsPerDemat" id="field_nameAsPerDemat"
+                        [(ngModel)]="depositoryInfo.nameAsPerDemat" required/>
+                    <div [hidden]="!(editForm.controls.nameAsPerDemat?.dirty && editForm.controls.nameAsPerDemat?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nameAsPerDemat?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

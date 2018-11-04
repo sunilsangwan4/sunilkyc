@@ -1,0 +1,42 @@
+{
+    "name": "TypeCd",
+    "fields": [
+        {
+            "fieldName": "typeCd",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 3,
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "typeDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 250
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "groupCd",
+            "otherEntityName": "groupCd",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181103124721",
+    "entityTableName": "type_cd",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

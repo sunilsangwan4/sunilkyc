@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-token-verification-heading" jhiTranslate="kyc5App.tokenVerification.home.createOrEditLabel">Create or edit a Token Verification</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!tokenVerification.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="tokenVerification.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tokenVerification.mobileNo" for="field_mobileNo">Mobile No</label>
+                    <input type="text" class="form-control" name="mobileNo" id="field_mobileNo"
+                        [(ngModel)]="tokenVerification.mobileNo" required minlength="10" maxlength="10"/>
+                    <div [hidden]="!(editForm.controls.mobileNo?.dirty && editForm.controls.mobileNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.mobileNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.mobileNo?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 10 }">
+                        This field is required to be at least 10 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.mobileNo?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 10 }">
+                        This field cannot be longer than 10 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tokenVerification.token" for="field_token">Token</label>
+                    <input type="text" class="form-control" name="token" id="field_token"
+                        [(ngModel)]="tokenVerification.token" minlength="6" maxlength="6"/>
+                    <div [hidden]="!(editForm.controls.token?.dirty && editForm.controls.token?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.token?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 6 }">
+                        This field is required to be at least 6 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.token?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 6 }">
+                        This field cannot be longer than 6 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tokenVerification.status" for="field_status">Status</label>
+                    <input type="text" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="tokenVerification.status" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

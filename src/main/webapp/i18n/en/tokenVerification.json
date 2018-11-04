@@ -1,0 +1,24 @@
+
+{
+    "kyc5App": {
+        "tokenVerification" : {
+            "home": {
+                "title": "Token Verifications",
+                "createLabel": "Create a new Token Verification",
+                "createOrEditLabel": "Create or edit a Token Verification"
+            },
+            "created": "A new Token Verification is created with identifier {{ param }}",
+            "updated": "A Token Verification is updated with identifier {{ param }}",
+            "deleted": "A Token Verification is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Token Verification {{ id }}?"
+            },
+            "detail": {
+                "title": "Token Verification"
+            },
+            "mobileNo": "Mobile No",
+            "token": "Token",
+            "status": "Status"
+        }
+    }
+}

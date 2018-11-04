@@ -1,0 +1,164 @@
+<div class="row content">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h4 id="jhi-application-prospect-heading" >Welcome! You are at right place, Please fill details below</h4>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!applicationProspect.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="applicationProspect.id" readonly />
+                </div>
+                
+                
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.applicationProspect.fullName" for="field_fullName">Full Name</label>
+                    <input type="text" class="form-control" name="fullName" id="field_fullName"
+                        [(ngModel)]="applicationProspect.fullName" required minlength="3" maxlength="32"/>
+                    <div [hidden]="!(editForm.controls.fullName?.dirty && editForm.controls.fullName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fullName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fullName?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fullName?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 32 }">
+                        This field cannot be longer than 32 characters.
+                        </small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    
+                    <label class="form-control-label" jhiTranslate="kyc5App.applicationProspect.mobileNo" for="field_mobileNo">Mobile No</label>
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="text" class="form-control" name="mobileNo" id="field_mobileNo"
+                            [(ngModel)]="applicationProspect.mobileNo" required minlength="10" maxlength="10"/>
+                        <div [hidden]="!(editForm.controls.mobileNo?.dirty && editForm.controls.mobileNo?.invalid)">
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.mobileNo?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.mobileNo?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 10 }">
+                            This field is required to be at least 10 characters.
+                            </small>
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.mobileNo?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 10 }">
+                            This field cannot be longer than 10 characters.
+                            </small>
+                        </div>
+                        </div>
+                        <div class="col-4">
+                            <a  id="send-otp"  class="btn btn-success" (click)="sendOTP()" >
+                                <span >Send OTP</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group" [hidden]="!otpSent || verified">
+                    
+                   
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="text" class="form-control" name="filledOTP" id="filledOTP"
+                            [(ngModel)]="filledOTP"  minlength="6" maxlength="6"/>
+                        <div [hidden]="!(editForm.controls.filledOTP?.dirty && editForm.controls.filledOTP?.invalid)">
+                           
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.filledOTP?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 6 }">
+                            This field is required to be at least 6 characters.
+                            </small>
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.filledOTP?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 6 }">
+                            This field cannot be longer than 6 characters.
+                            </small>
+                        </div>
+                        </div>
+                        <div class="col-4">
+                            <a  id="send-otp"  class="btn btn-success" (click)="verifyOTP()" >
+                                <span >Verify OTP</span>
+                            </button>
+                        </div>
+
+                    </div>
+                   
+                   
+                </div>
+                <p [hidden]="!verified" class="text-success">Mobile number verified successfully</p>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.applicationProspect.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="applicationProspect.email" required minlength="5" maxlength="32"/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 5 }">
+                        This field is required to be at least 5 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 32 }">
+                        This field cannot be longer than 32 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.applicationProspect.password" for="field_password">Password</label>
+                    <input type="password" class="form-control" name="password" id="field_password"
+                        [(ngModel)]="applicationProspect.password" required minlength="8" maxlength="20"/>
+                    <div [hidden]="!(editForm.controls.password?.dirty && editForm.controls.password?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.password?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.password?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 8 }">
+                        This field is required to be at least 8 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.password?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.applicationProspect.confirmPassword" for="field_confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirmPassword" id="field_confirmPassword"
+                        [(ngModel)]="applicationProspect.confirmPassword" required minlength="8" maxlength="20"/>
+                    <div [hidden]="!(editForm.controls.confirmPassword?.dirty && editForm.controls.confirmPassword?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.confirmPassword?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.confirmPassword?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 8 }">
+                        This field is required to be at least 8 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.confirmPassword?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Apply Online</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

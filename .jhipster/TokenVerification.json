@@ -1,0 +1,41 @@
+{
+    "name": "TokenVerification",
+    "fields": [
+        {
+            "fieldName": "mobileNo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "unique"
+            ],
+            "fieldValidateRulesMinlength": 10,
+            "fieldValidateRulesMaxlength": 10
+        },
+        {
+            "fieldName": "token",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 6,
+            "fieldValidateRulesMaxlength": 6
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181103124722",
+    "entityTableName": "token_verification",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

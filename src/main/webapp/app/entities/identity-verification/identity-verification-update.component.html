@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-identity-verification-heading" jhiTranslate="kyc5App.identityVerification.home.createOrEditLabel">Create or edit a Identity Verification</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!identityVerification.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="identityVerification.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.identityVerification.adhaarNo" for="field_adhaarNo">Adhaar No</label>
+                    <input type="text" class="form-control" name="adhaarNo" id="field_adhaarNo"
+                        [(ngModel)]="identityVerification.adhaarNo" required minlength="12" maxlength="12"/>
+                    <div [hidden]="!(editForm.controls.adhaarNo?.dirty && editForm.controls.adhaarNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.adhaarNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.adhaarNo?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 12 }">
+                        This field is required to be at least 12 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.adhaarNo?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 12 }">
+                        This field cannot be longer than 12 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.identityVerification.aadharNoVerified" for="field_aadharNoVerified">Aadhar No Verified</label>
+                    <input type="checkbox" class="form-control" name="aadharNoVerified" id="field_aadharNoVerified"
+                        [(ngModel)]="identityVerification.aadharNoVerified" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.identityVerification.panNo" for="field_panNo">Pan No</label>
+                    <input type="text" class="form-control" name="panNo" id="field_panNo"
+                        [(ngModel)]="identityVerification.panNo" required minlength="10" maxlength="10"/>
+                    <div [hidden]="!(editForm.controls.panNo?.dirty && editForm.controls.panNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.panNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.panNo?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 10 }">
+                        This field is required to be at least 10 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.panNo?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 10 }">
+                        This field cannot be longer than 10 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.identityVerification.panNoVerified" for="field_panNoVerified">Pan No Verified</label>
+                    <input type="checkbox" class="form-control" name="panNoVerified" id="field_panNoVerified"
+                        [(ngModel)]="identityVerification.panNoVerified" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.identityVerification.dateOfBirth" for="field_dateOfBirth">Date Of Birth</label>
+                    <div class="input-group">
+                        <input id="field_dateOfBirth" type="text" class="form-control" name="dateOfBirth" ngbDatepicker  #dateOfBirthDp="ngbDatepicker" [(ngModel)]="identityVerification.dateOfBirth"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateOfBirthDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateOfBirth?.dirty && editForm.controls.dateOfBirth?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateOfBirth?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

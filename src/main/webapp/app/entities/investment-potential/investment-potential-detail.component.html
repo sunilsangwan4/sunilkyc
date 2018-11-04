@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="investmentPotential">
+            <h2><span jhiTranslate="kyc5App.investmentPotential.detail.title">Investment Potential</span> {{investmentPotential.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="kyc5App.investmentPotential.educationQualification">Education Qualification</span></dt>
+                <dd>
+                    <span>{{investmentPotential.educationQualification}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.investmentPotential.occupation">Occupation</span></dt>
+                <dd>
+                    <span>{{investmentPotential.occupation}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.investmentPotential.annualIncome">Annual Income</span></dt>
+                <dd>
+                    <span>{{investmentPotential.annualIncome}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.investmentPotential.netWorth">Net Worth</span></dt>
+                <dd>
+                    <span>{{investmentPotential.netWorth}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.investmentPotential.networthDeclarationDate">Networth Declaration Date</span></dt>
+                <dd>
+                    <span>{{investmentPotential.networthDeclarationDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.investmentPotential.pepRelative">Pep Relative</span></dt>
+                <dd>
+                    <span>{{investmentPotential.pepRelative}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.investmentPotential.pmlaRiskCategory">Pmla Risk Category</span></dt>
+                <dd>
+                    <span>{{investmentPotential.pmlaRiskCategory}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.investmentPotential.pmlaRiskCategoryReason">Pmla Risk Category Reason</span></dt>
+                <dd>
+                    <span>{{investmentPotential.pmlaRiskCategoryReason}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/investment-potential', investmentPotential.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

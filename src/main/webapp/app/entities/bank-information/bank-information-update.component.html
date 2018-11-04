@@ -1,0 +1,126 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-bank-information-heading" jhiTranslate="kyc5App.bankInformation.home.createOrEditLabel">Create or edit a Bank Information</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!bankInformation.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="bankInformation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.bankName" for="field_bankName">Bank Name</label>
+                    <input type="text" class="form-control" name="bankName" id="field_bankName"
+                        [(ngModel)]="bankInformation.bankName" required/>
+                    <div [hidden]="!(editForm.controls.bankName?.dirty && editForm.controls.bankName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.bankName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.ifscCode" for="field_ifscCode">Ifsc Code</label>
+                    <input type="text" class="form-control" name="ifscCode" id="field_ifscCode"
+                        [(ngModel)]="bankInformation.ifscCode" required minlength="11" maxlength="11"/>
+                    <div [hidden]="!(editForm.controls.ifscCode?.dirty && editForm.controls.ifscCode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ifscCode?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ifscCode?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 11 }">
+                        This field is required to be at least 11 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ifscCode?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 11 }">
+                        This field cannot be longer than 11 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.micrCode" for="field_micrCode">Micr Code</label>
+                    <input type="text" class="form-control" name="micrCode" id="field_micrCode"
+                        [(ngModel)]="bankInformation.micrCode" required/>
+                    <div [hidden]="!(editForm.controls.micrCode?.dirty && editForm.controls.micrCode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.micrCode?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.branchName" for="field_branchName">Branch Name</label>
+                    <input type="text" class="form-control" name="branchName" id="field_branchName"
+                        [(ngModel)]="bankInformation.branchName" required/>
+                    <div [hidden]="!(editForm.controls.branchName?.dirty && editForm.controls.branchName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.branchName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.accountType" for="field_accountType">Account Type</label>
+                    <input type="text" class="form-control" name="accountType" id="field_accountType"
+                        [(ngModel)]="bankInformation.accountType" required/>
+                    <div [hidden]="!(editForm.controls.accountType?.dirty && editForm.controls.accountType?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.accountType?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.accountNumber" for="field_accountNumber">Account Number</label>
+                    <input type="text" class="form-control" name="accountNumber" id="field_accountNumber"
+                        [(ngModel)]="bankInformation.accountNumber" required/>
+                    <div [hidden]="!(editForm.controls.accountNumber?.dirty && editForm.controls.accountNumber?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.accountNumber?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.accountHolderName" for="field_accountHolderName">Account Holder Name</label>
+                    <input type="text" class="form-control" name="accountHolderName" id="field_accountHolderName"
+                        [(ngModel)]="bankInformation.accountHolderName" required/>
+                    <div [hidden]="!(editForm.controls.accountHolderName?.dirty && editForm.controls.accountHolderName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.accountHolderName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.bankAccountCommon" for="field_bankAccountCommon">Bank Account Common</label>
+                    <input type="checkbox" class="form-control" name="bankAccountCommon" id="field_bankAccountCommon"
+                        [(ngModel)]="bankInformation.bankAccountCommon" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.segementTypeCd" for="field_segementTypeCd">Segement Type Cd</label>
+                    <input type="text" class="form-control" name="segementTypeCd" id="field_segementTypeCd"
+                        [(ngModel)]="bankInformation.segementTypeCd" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.bankInformation.applicationProspect" for="field_applicationProspect">Application Prospect</label>
+                    <select class="form-control" id="field_applicationProspect" name="applicationProspect" [(ngModel)]="bankInformation.applicationProspectId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="applicationProspectOption.id" *ngFor="let applicationProspectOption of applicationprospects; trackBy: trackApplicationProspectById">{{applicationProspectOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-trading-info-heading" jhiTranslate="kyc5App.tradingInfo.home.createOrEditLabel">Create or edit a Trading Info</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!tradingInfo.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="tradingInfo.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tradingInfo.segmentCd" for="field_segmentCd">Segment Cd</label>
+                    <input type="text" class="form-control" name="segmentCd" id="field_segmentCd"
+                        [(ngModel)]="tradingInfo.segmentCd" required/>
+                    <div [hidden]="!(editForm.controls.segmentCd?.dirty && editForm.controls.segmentCd?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.segmentCd?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tradingInfo.planCdEquity" for="field_planCdEquity">Plan Cd Equity</label>
+                    <input type="text" class="form-control" name="planCdEquity" id="field_planCdEquity"
+                        [(ngModel)]="tradingInfo.planCdEquity" required/>
+                    <div [hidden]="!(editForm.controls.planCdEquity?.dirty && editForm.controls.planCdEquity?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.planCdEquity?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tradingInfo.planCdCommodity" for="field_planCdCommodity">Plan Cd Commodity</label>
+                    <input type="text" class="form-control" name="planCdCommodity" id="field_planCdCommodity"
+                        [(ngModel)]="tradingInfo.planCdCommodity" required/>
+                    <div [hidden]="!(editForm.controls.planCdCommodity?.dirty && editForm.controls.planCdCommodity?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.planCdCommodity?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tradingInfo.contractNoteMode" for="field_contractNoteMode">Contract Note Mode</label>
+                    <input type="text" class="form-control" name="contractNoteMode" id="field_contractNoteMode"
+                        [(ngModel)]="tradingInfo.contractNoteMode" required/>
+                    <div [hidden]="!(editForm.controls.contractNoteMode?.dirty && editForm.controls.contractNoteMode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.contractNoteMode?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tradingInfo.tradingMode" for="field_tradingMode">Trading Mode</label>
+                    <input type="text" class="form-control" name="tradingMode" id="field_tradingMode"
+                        [(ngModel)]="tradingInfo.tradingMode" required/>
+                    <div [hidden]="!(editForm.controls.tradingMode?.dirty && editForm.controls.tradingMode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.tradingMode?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tradingInfo.interestedInMobileTradeing" for="field_interestedInMobileTradeing">Interested In Mobile Tradeing</label>
+                    <input type="checkbox" class="form-control" name="interestedInMobileTradeing" id="field_interestedInMobileTradeing"
+                        [(ngModel)]="tradingInfo.interestedInMobileTradeing" />
+                    <div [hidden]="!(editForm.controls.interestedInMobileTradeing?.dirty && editForm.controls.interestedInMobileTradeing?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.interestedInMobileTradeing?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tradingInfo.accountAuthFrequency" for="field_accountAuthFrequency">Account Auth Frequency</label>
+                    <input type="text" class="form-control" name="accountAuthFrequency" id="field_accountAuthFrequency"
+                        [(ngModel)]="tradingInfo.accountAuthFrequency" required/>
+                    <div [hidden]="!(editForm.controls.accountAuthFrequency?.dirty && editForm.controls.accountAuthFrequency?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.accountAuthFrequency?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tradingInfo.experienceYear" for="field_experienceYear">Experience Year</label>
+                    <input type="number" class="form-control" name="experienceYear" id="field_experienceYear"
+                        [(ngModel)]="tradingInfo.experienceYear" required/>
+                    <div [hidden]="!(editForm.controls.experienceYear?.dirty && editForm.controls.experienceYear?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.experienceYear?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.experienceYear?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.tradingInfo.experienceMonth" for="field_experienceMonth">Experience Month</label>
+                    <input type="number" class="form-control" name="experienceMonth" id="field_experienceMonth"
+                        [(ngModel)]="tradingInfo.experienceMonth" required/>
+                    <div [hidden]="!(editForm.controls.experienceMonth?.dirty && editForm.controls.experienceMonth?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.experienceMonth?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.experienceMonth?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="kyc5App.nominee.home.title">Nominees</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-nominee" [routerLink]="['/nominee/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="kyc5App.nominee.home.createLabel">
+            Create new Nominee
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="nominees">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="kyc5App.nominee.nomineeName">Nominee Name</span></th>
+            <th><span jhiTranslate="kyc5App.nominee.relationShip">Relation Ship</span></th>
+            <th><span jhiTranslate="kyc5App.nominee.dateOfBirth">Date Of Birth</span></th>
+            <th><span jhiTranslate="kyc5App.nominee.guardianName">Guardian Name</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let nominee of nominees ;trackBy: trackId">
+                <td><a [routerLink]="['/nominee', nominee.id, 'view' ]">{{nominee.id}}</a></td>
+                <td>{{nominee.nomineeName}}</td>
+                <td>{{nominee.relationShip}}</td>
+                <td>{{nominee.dateOfBirth | date:'mediumDate'}}</td>
+                <td>{{nominee.guardianName}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/nominee', nominee.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/nominee', nominee.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'nominee/'+ nominee.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -11,6 +11,11 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
             [
                 ...LAYOUT_ROUTES,
                 {
+                    path: '',
+                    redirectTo: '/application-prospect/new',
+                    pathMatch: 'full'
+                },
+                {
                     path: 'admin',
                     loadChildren: './admin/admin.module#Kyc5AdminModule'
                 }

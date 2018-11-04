@@ -5,7 +5,7 @@ entity GroupCd{
 }
 
 entity TypeCd{
-	typeCd String required required minlength(3) maxlength(20)
+	typeCd String required required minlength(3) maxlength(20),
 	typeDescription String required maxlength(250)
 }
 entity TokenVerification{
@@ -20,7 +20,7 @@ entity EmailVerification{
 	status String 
 }
 
-entity ApplicationProspect{   fullname <token></token>
+entity ApplicationProspect{ 
 	fullName String required minlength(3) maxlength(32),
 	mobileNo String required minlength(10) maxlength(10) unique ,
     email String required minlength(5) maxlength(32) unique,

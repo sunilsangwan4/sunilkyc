@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="kyc5App.personalInformation.home.title">Personal Informations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-personal-information" [routerLink]="['/personal-information/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="kyc5App.personalInformation.home.createLabel">
+            Create new Personal Information
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="personalInformations">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.fatherName">Father Name</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.motherName">Mother Name</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.gender">Gender</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.nationality">Nationality</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.maritalStatus">Marital Status</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.indianTaxPayer">Indian Tax Payer</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.birthCountry">Birth Country</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.birthCity">Birth City</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.jurisdictionCountry">Jurisdiction Country</span></th>
+            <th><span jhiTranslate="kyc5App.personalInformation.taxIdentificationNo">Tax Identification No</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let personalInformation of personalInformations ;trackBy: trackId">
+                <td><a [routerLink]="['/personal-information', personalInformation.id, 'view' ]">{{personalInformation.id}}</a></td>
+                <td>{{personalInformation.fatherName}}</td>
+                <td>{{personalInformation.motherName}}</td>
+                <td>{{personalInformation.gender}}</td>
+                <td>{{personalInformation.nationality}}</td>
+                <td>{{personalInformation.maritalStatus}}</td>
+                <td>{{personalInformation.indianTaxPayer}}</td>
+                <td>{{personalInformation.birthCountry}}</td>
+                <td>{{personalInformation.birthCity}}</td>
+                <td>{{personalInformation.jurisdictionCountry}}</td>
+                <td>{{personalInformation.taxIdentificationNo}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/personal-information', personalInformation.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/personal-information', personalInformation.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'personal-information/'+ personalInformation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-nominee-heading" jhiTranslate="kyc5App.nominee.home.createOrEditLabel">Create or edit a Nominee</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!nominee.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="nominee.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.nominee.nomineeName" for="field_nomineeName">Nominee Name</label>
+                    <input type="text" class="form-control" name="nomineeName" id="field_nomineeName"
+                        [(ngModel)]="nominee.nomineeName" required/>
+                    <div [hidden]="!(editForm.controls.nomineeName?.dirty && editForm.controls.nomineeName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nomineeName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.nominee.relationShip" for="field_relationShip">Relation Ship</label>
+                    <input type="text" class="form-control" name="relationShip" id="field_relationShip"
+                        [(ngModel)]="nominee.relationShip" required/>
+                    <div [hidden]="!(editForm.controls.relationShip?.dirty && editForm.controls.relationShip?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.relationShip?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.nominee.dateOfBirth" for="field_dateOfBirth">Date Of Birth</label>
+                    <div class="input-group">
+                        <input id="field_dateOfBirth" type="text" class="form-control" name="dateOfBirth" ngbDatepicker  #dateOfBirthDp="ngbDatepicker" [(ngModel)]="nominee.dateOfBirth"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateOfBirthDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dateOfBirth?.dirty && editForm.controls.dateOfBirth?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dateOfBirth?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="kyc5App.nominee.guardianName" for="field_guardianName">Guardian Name</label>
+                    <input type="text" class="form-control" name="guardianName" id="field_guardianName"
+                        [(ngModel)]="nominee.guardianName" required/>
+                    <div [hidden]="!(editForm.controls.guardianName?.dirty && editForm.controls.guardianName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.guardianName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

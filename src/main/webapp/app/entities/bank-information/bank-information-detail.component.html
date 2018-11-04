@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bankInformation">
+            <h2><span jhiTranslate="kyc5App.bankInformation.detail.title">Bank Information</span> {{bankInformation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="kyc5App.bankInformation.bankName">Bank Name</span></dt>
+                <dd>
+                    <span>{{bankInformation.bankName}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.bankInformation.ifscCode">Ifsc Code</span></dt>
+                <dd>
+                    <span>{{bankInformation.ifscCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.bankInformation.micrCode">Micr Code</span></dt>
+                <dd>
+                    <span>{{bankInformation.micrCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.bankInformation.branchName">Branch Name</span></dt>
+                <dd>
+                    <span>{{bankInformation.branchName}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.bankInformation.accountType">Account Type</span></dt>
+                <dd>
+                    <span>{{bankInformation.accountType}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.bankInformation.accountNumber">Account Number</span></dt>
+                <dd>
+                    <span>{{bankInformation.accountNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.bankInformation.accountHolderName">Account Holder Name</span></dt>
+                <dd>
+                    <span>{{bankInformation.accountHolderName}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.bankInformation.bankAccountCommon">Bank Account Common</span></dt>
+                <dd>
+                    <span>{{bankInformation.bankAccountCommon}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.bankInformation.segementTypeCd">Segement Type Cd</span></dt>
+                <dd>
+                    <span>{{bankInformation.segementTypeCd}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.bankInformation.applicationProspect">Application Prospect</span></dt>
+                <dd>
+                    <div *ngIf="bankInformation.applicationProspectId">
+                        <a [routerLink]="['/application-prospect', bankInformation.applicationProspectId, 'view']">{{bankInformation.applicationProspectId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bank-information', bankInformation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,23 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124720_added_entity_GroupCd.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124721_added_entity_TypeCd.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124722_added_entity_TokenVerification.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124723_added_entity_EmailVerification.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124724_added_entity_ApplicationProspect.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124725_added_entity_IdentityVerification.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124726_added_entity_Address.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124727_added_entity_BankInformation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124728_added_entity_PersonalInformation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124729_added_entity_InvestmentPotential.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124730_added_entity_Nominee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124731_added_entity_TradingInfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124732_added_entity_DepositoryInfo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20181103124721_added_entity_constraints_TypeCd.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124724_added_entity_constraints_ApplicationProspect.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124726_added_entity_constraints_Address.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181103124727_added_entity_constraints_BankInformation.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

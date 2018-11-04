@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ApplicationProspect.
+    -->
+    <changeSet id="20181103124724-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="personal_information_id"
+                                 baseTableName="application_prospect"
+                                 constraintName="fk_application_prospect_personal_information_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personal_information"/>
+
+        <addForeignKeyConstraint baseColumnNames="investment_potential_id"
+                                 baseTableName="application_prospect"
+                                 constraintName="fk_application_prospect_investment_potential_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="investment_potential"/>
+
+        <addForeignKeyConstraint baseColumnNames="nominee_id"
+                                 baseTableName="application_prospect"
+                                 constraintName="fk_application_prospect_nominee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="nominee"/>
+
+        <addForeignKeyConstraint baseColumnNames="trading_info_id"
+                                 baseTableName="application_prospect"
+                                 constraintName="fk_application_prospect_trading_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="trading_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="depository_id"
+                                 baseTableName="application_prospect"
+                                 constraintName="fk_application_prospect_depository_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="depository_info"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="address">
+            <h2><span jhiTranslate="kyc5App.address.detail.title">Address</span> {{address.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="kyc5App.address.addressLine1">Address Line 1</span></dt>
+                <dd>
+                    <span>{{address.addressLine1}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.address.addressLine2">Address Line 2</span></dt>
+                <dd>
+                    <span>{{address.addressLine2}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.address.addressLine3">Address Line 3</span></dt>
+                <dd>
+                    <span>{{address.addressLine3}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.address.state">State</span></dt>
+                <dd>
+                    <span>{{address.state}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.address.city">City</span></dt>
+                <dd>
+                    <span>{{address.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.address.pinCode">Pin Code</span></dt>
+                <dd>
+                    <span>{{address.pinCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.address.country">Country</span></dt>
+                <dd>
+                    <span>{{address.country}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.address.addressType">Address Type</span></dt>
+                <dd>
+                    <span>{{address.addressType}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.address.applicationProspect">Application Prospect</span></dt>
+                <dd>
+                    <div *ngIf="address.applicationProspectId">
+                        <a [routerLink]="['/application-prospect', address.applicationProspectId, 'view']">{{address.applicationProspectId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.address.nominee">Nominee</span></dt>
+                <dd>
+                    <div *ngIf="address.nomineeId">
+                        <a [routerLink]="['/nominee', address.nomineeId, 'view']">{{address.nomineeId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/address', address.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

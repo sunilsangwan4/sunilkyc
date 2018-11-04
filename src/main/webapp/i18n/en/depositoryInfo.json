@@ -1,0 +1,29 @@
+
+{
+    "kyc5App": {
+        "depositoryInfo" : {
+            "home": {
+                "title": "Depository Infos",
+                "createLabel": "Create a new Depository Info",
+                "createOrEditLabel": "Create or edit a Depository Info"
+            },
+            "created": "A new Depository Info is created with identifier {{ param }}",
+            "updated": "A Depository Info is updated with identifier {{ param }}",
+            "deleted": "A Depository Info is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Depository Info {{ id }}?"
+            },
+            "detail": {
+                "title": "Depository Info"
+            },
+            "haveAccountWithOtherDP": "Have Account With Other DP",
+            "haveSMSEnabled": "Have SMS Enabled",
+            "statementFrequency": "Statement Frequency",
+            "dpScheme": "Dp Scheme",
+            "depositoryName": "Depository Name",
+            "brokerName": "Broker Name",
+            "nameAsPerDemat": "Name As Per Demat",
+            "applicationProspect": "Application Prospect"
+        }
+    }
+}

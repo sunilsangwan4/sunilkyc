@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="nominee">
+            <h2><span jhiTranslate="kyc5App.nominee.detail.title">Nominee</span> {{nominee.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="kyc5App.nominee.nomineeName">Nominee Name</span></dt>
+                <dd>
+                    <span>{{nominee.nomineeName}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.nominee.relationShip">Relation Ship</span></dt>
+                <dd>
+                    <span>{{nominee.relationShip}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.nominee.dateOfBirth">Date Of Birth</span></dt>
+                <dd>
+                    <span>{{nominee.dateOfBirth}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.nominee.guardianName">Guardian Name</span></dt>
+                <dd>
+                    <span>{{nominee.guardianName}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/nominee', nominee.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

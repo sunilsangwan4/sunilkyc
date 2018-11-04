@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tradingInfo">
+            <h2><span jhiTranslate="kyc5App.tradingInfo.detail.title">Trading Info</span> {{tradingInfo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="kyc5App.tradingInfo.segmentCd">Segment Cd</span></dt>
+                <dd>
+                    <span>{{tradingInfo.segmentCd}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.tradingInfo.planCdEquity">Plan Cd Equity</span></dt>
+                <dd>
+                    <span>{{tradingInfo.planCdEquity}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.tradingInfo.planCdCommodity">Plan Cd Commodity</span></dt>
+                <dd>
+                    <span>{{tradingInfo.planCdCommodity}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.tradingInfo.contractNoteMode">Contract Note Mode</span></dt>
+                <dd>
+                    <span>{{tradingInfo.contractNoteMode}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.tradingInfo.tradingMode">Trading Mode</span></dt>
+                <dd>
+                    <span>{{tradingInfo.tradingMode}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.tradingInfo.interestedInMobileTradeing">Interested In Mobile Tradeing</span></dt>
+                <dd>
+                    <span>{{tradingInfo.interestedInMobileTradeing}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.tradingInfo.accountAuthFrequency">Account Auth Frequency</span></dt>
+                <dd>
+                    <span>{{tradingInfo.accountAuthFrequency}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.tradingInfo.experienceYear">Experience Year</span></dt>
+                <dd>
+                    <span>{{tradingInfo.experienceYear}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.tradingInfo.experienceMonth">Experience Month</span></dt>
+                <dd>
+                    <span>{{tradingInfo.experienceMonth}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/trading-info', tradingInfo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+
+{
+    "kyc5App": {
+        "emailVerification" : {
+            "home": {
+                "title": "Email Verifications",
+                "createLabel": "Create a new Email Verification",
+                "createOrEditLabel": "Create or edit a Email Verification"
+            },
+            "created": "A new Email Verification is created with identifier {{ param }}",
+            "updated": "A Email Verification is updated with identifier {{ param }}",
+            "deleted": "A Email Verification is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Email Verification {{ id }}?"
+            },
+            "detail": {
+                "title": "Email Verification"
+            },
+            "emailId": "Email Id",
+            "token": "Token",
+            "status": "Status"
+        }
+    }
+}

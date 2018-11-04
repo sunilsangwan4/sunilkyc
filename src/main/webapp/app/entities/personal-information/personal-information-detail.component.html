@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="personalInformation">
+            <h2><span jhiTranslate="kyc5App.personalInformation.detail.title">Personal Information</span> {{personalInformation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="kyc5App.personalInformation.fatherName">Father Name</span></dt>
+                <dd>
+                    <span>{{personalInformation.fatherName}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.personalInformation.motherName">Mother Name</span></dt>
+                <dd>
+                    <span>{{personalInformation.motherName}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.personalInformation.gender">Gender</span></dt>
+                <dd>
+                    <span>{{personalInformation.gender}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.personalInformation.nationality">Nationality</span></dt>
+                <dd>
+                    <span>{{personalInformation.nationality}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.personalInformation.maritalStatus">Marital Status</span></dt>
+                <dd>
+                    <span>{{personalInformation.maritalStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.personalInformation.indianTaxPayer">Indian Tax Payer</span></dt>
+                <dd>
+                    <span>{{personalInformation.indianTaxPayer}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.personalInformation.birthCountry">Birth Country</span></dt>
+                <dd>
+                    <span>{{personalInformation.birthCountry}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.personalInformation.birthCity">Birth City</span></dt>
+                <dd>
+                    <span>{{personalInformation.birthCity}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.personalInformation.jurisdictionCountry">Jurisdiction Country</span></dt>
+                <dd>
+                    <span>{{personalInformation.jurisdictionCountry}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.personalInformation.taxIdentificationNo">Tax Identification No</span></dt>
+                <dd>
+                    <span>{{personalInformation.taxIdentificationNo}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/personal-information', personalInformation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

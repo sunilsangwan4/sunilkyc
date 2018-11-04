@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="emailVerification">
+            <h2><span jhiTranslate="kyc5App.emailVerification.detail.title">Email Verification</span> {{emailVerification.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="kyc5App.emailVerification.emailId">Email Id</span></dt>
+                <dd>
+                    <span>{{emailVerification.emailId}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.emailVerification.token">Token</span></dt>
+                <dd>
+                    <span>{{emailVerification.token}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.emailVerification.status">Status</span></dt>
+                <dd>
+                    <span>{{emailVerification.status}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/email-verification', emailVerification.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

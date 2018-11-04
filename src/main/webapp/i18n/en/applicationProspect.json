@@ -1,0 +1,33 @@
+
+{
+    "kyc5App": {
+        "applicationProspect" : {
+            "home": {
+                "title": "Application Prospects",
+                "createLabel": "Create a new Application Prospect",
+                "createOrEditLabel": "Create or edit a Application Prospect"
+            },
+            "created": "A new Application Prospect is created with identifier {{ param }}",
+            "updated": "A Application Prospect is updated with identifier {{ param }}",
+            "deleted": "A Application Prospect is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Application Prospect {{ id }}?"
+            },
+            "detail": {
+                "title": "Application Prospect"
+            },
+            "fullName": "Full Name",
+            "mobileNo": "Mobile No",
+            "email": "Email",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "personalInformation": "Personal Information",
+            "investmentPotential": "Investment Potential",
+            "nominee": "Nominee",
+            "tradingInfo": "Trading Info",
+            "depository": "Depository",
+            "addresses": "Addresses",
+            "bankInformation": "Bank Information"
+        }
+    }
+}

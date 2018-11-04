@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="applicationProspect">
+            <h2><span jhiTranslate="kyc5App.applicationProspect.detail.title">Application Prospect</span> {{applicationProspect.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="kyc5App.applicationProspect.fullName">Full Name</span></dt>
+                <dd>
+                    <span>{{applicationProspect.fullName}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.mobileNo">Mobile No</span></dt>
+                <dd>
+                    <span>{{applicationProspect.mobileNo}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.email">Email</span></dt>
+                <dd>
+                    <span>{{applicationProspect.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.password">Password</span></dt>
+                <dd>
+                    <span>{{applicationProspect.password}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.confirmPassword">Confirm Password</span></dt>
+                <dd>
+                    <span>{{applicationProspect.confirmPassword}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.personalInformation">Personal Information</span></dt>
+                <dd>
+                    <div *ngIf="applicationProspect.personalInformationId">
+                        <a [routerLink]="['/personal-information', applicationProspect.personalInformationId, 'view']">{{applicationProspect.personalInformationId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.investmentPotential">Investment Potential</span></dt>
+                <dd>
+                    <div *ngIf="applicationProspect.investmentPotentialId">
+                        <a [routerLink]="['/investment-potential', applicationProspect.investmentPotentialId, 'view']">{{applicationProspect.investmentPotentialId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.nominee">Nominee</span></dt>
+                <dd>
+                    <div *ngIf="applicationProspect.nomineeId">
+                        <a [routerLink]="['/nominee', applicationProspect.nomineeId, 'view']">{{applicationProspect.nomineeId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.tradingInfo">Trading Info</span></dt>
+                <dd>
+                    <div *ngIf="applicationProspect.tradingInfoId">
+                        <a [routerLink]="['/trading-info', applicationProspect.tradingInfoId, 'view']">{{applicationProspect.tradingInfoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.depository">Depository</span></dt>
+                <dd>
+                    <div *ngIf="applicationProspect.depositoryId">
+                        <a [routerLink]="['/depository-info', applicationProspect.depositoryId, 'view']">{{applicationProspect.depositoryId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/application-prospect', applicationProspect.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

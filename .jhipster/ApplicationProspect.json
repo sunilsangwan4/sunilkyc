@@ -1,0 +1,125 @@
+{
+    "name": "ApplicationProspect",
+    "fields": [
+        {
+            "fieldName": "fullName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 3,
+            "fieldValidateRulesMaxlength": 32
+        },
+        {
+            "fieldName": "mobileNo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "unique"
+            ],
+            "fieldValidateRulesMinlength": 10,
+            "fieldValidateRulesMaxlength": 10
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength",
+                "unique"
+            ],
+            "fieldValidateRulesMinlength": 5,
+            "fieldValidateRulesMaxlength": 32
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 8,
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "confirmPassword",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 8,
+            "fieldValidateRulesMaxlength": 20
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "personalInformation",
+            "otherEntityName": "personalInformation",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "investmentPotential",
+            "otherEntityName": "investmentPotential",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "nominee",
+            "otherEntityName": "nominee",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "tradingInfo",
+            "otherEntityName": "tradingInfo",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "depository",
+            "otherEntityName": "depositoryInfo",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "addresses",
+            "otherEntityName": "address",
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "bankInformation",
+            "otherEntityName": "bankInformation",
+            "otherEntityRelationshipName": "applicationProspect"
+        }
+    ],
+    "changelogDate": "20181103124724",
+    "entityTableName": "application_prospect",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

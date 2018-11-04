@@ -7,6 +7,19 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "groupCd": "Group Cd",
+                "typeCd": "Type Cd",
+                "tokenVerification": "Token Verification",
+                "emailVerification": "Email Verification",
+                "applicationProspect": "Application Prospect",
+                "identityVerification": "Identity Verification",
+                "address": "Address",
+                "bankInformation": "Bank Information",
+                "personalInformation": "Personal Information",
+                "investmentPotential": "Investment Potential",
+                "nominee": "Nominee",
+                "tradingInfo": "Trading Info",
+                "depositoryInfo": "Depository Info",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

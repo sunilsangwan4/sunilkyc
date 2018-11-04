@@ -1,0 +1,58 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="kyc5App.emailVerification.home.title">Email Verifications</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-email-verification" [routerLink]="['/email-verification/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="kyc5App.emailVerification.home.createLabel">
+            Create new Email Verification
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="emailVerifications">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="kyc5App.emailVerification.emailId">Email Id</span></th>
+            <th><span jhiTranslate="kyc5App.emailVerification.token">Token</span></th>
+            <th><span jhiTranslate="kyc5App.emailVerification.status">Status</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let emailVerification of emailVerifications ;trackBy: trackId">
+                <td><a [routerLink]="['/email-verification', emailVerification.id, 'view' ]">{{emailVerification.id}}</a></td>
+                <td>{{emailVerification.emailId}}</td>
+                <td>{{emailVerification.token}}</td>
+                <td>{{emailVerification.status}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/email-verification', emailVerification.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/email-verification', emailVerification.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'email-verification/'+ emailVerification.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="kyc5App.applicationProspect.home.title">Application Prospects</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-application-prospect" [routerLink]="['/application-prospect/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="kyc5App.applicationProspect.home.createLabel">
+            Create new Application Prospect
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="applicationProspects">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fullName"><span jhiTranslate="kyc5App.applicationProspect.fullName">Full Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mobileNo"><span jhiTranslate="kyc5App.applicationProspect.mobileNo">Mobile No</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="kyc5App.applicationProspect.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="password"><span jhiTranslate="kyc5App.applicationProspect.password">Password</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="confirmPassword"><span jhiTranslate="kyc5App.applicationProspect.confirmPassword">Confirm Password</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="personalInformationId"><span jhiTranslate="kyc5App.applicationProspect.personalInformation">Personal Information</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="investmentPotentialId"><span jhiTranslate="kyc5App.applicationProspect.investmentPotential">Investment Potential</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nomineeId"><span jhiTranslate="kyc5App.applicationProspect.nominee">Nominee</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tradingInfoId"><span jhiTranslate="kyc5App.applicationProspect.tradingInfo">Trading Info</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="depositoryId"><span jhiTranslate="kyc5App.applicationProspect.depository">Depository</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let applicationProspect of applicationProspects ;trackBy: trackId">
+                <td><a [routerLink]="['/application-prospect', applicationProspect.id, 'view' ]">{{applicationProspect.id}}</a></td>
+                <td>{{applicationProspect.fullName}}</td>
+                <td>{{applicationProspect.mobileNo}}</td>
+                <td>{{applicationProspect.email}}</td>
+                <td>{{applicationProspect.password}}</td>
+                <td>{{applicationProspect.confirmPassword}}</td>
+                <td>
+                    <div *ngIf="applicationProspect.personalInformationId">
+                        <a [routerLink]="['../personal-information', applicationProspect.personalInformationId , 'view' ]" >{{applicationProspect.personalInformationId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="applicationProspect.investmentPotentialId">
+                        <a [routerLink]="['../investment-potential', applicationProspect.investmentPotentialId , 'view' ]" >{{applicationProspect.investmentPotentialId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="applicationProspect.nomineeId">
+                        <a [routerLink]="['../nominee', applicationProspect.nomineeId , 'view' ]" >{{applicationProspect.nomineeId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="applicationProspect.tradingInfoId">
+                        <a [routerLink]="['../trading-info', applicationProspect.tradingInfoId , 'view' ]" >{{applicationProspect.tradingInfoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="applicationProspect.depositoryId">
+                        <a [routerLink]="['../depository-info', applicationProspect.depositoryId , 'view' ]" >{{applicationProspect.depositoryId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/application-prospect', applicationProspect.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/application-prospect', applicationProspect.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'application-prospect/'+ applicationProspect.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="applicationProspects && applicationProspects.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+{
+    "name": "InvestmentPotential",
+    "fields": [
+        {
+            "fieldName": "educationQualification",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "occupation",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "annualIncome",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "netWorth",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "networthDeclarationDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pepRelative",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pmlaRiskCategory",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pmlaRiskCategoryReason",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "applicationProspect",
+            "otherEntityName": "applicationProspect",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "investmentPotential"
+        }
+    ],
+    "changelogDate": "20181103124729",
+    "entityTableName": "investment_potential",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,68 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="kyc5App.investmentPotential.home.title">Investment Potentials</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-investment-potential" [routerLink]="['/investment-potential/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="kyc5App.investmentPotential.home.createLabel">
+            Create new Investment Potential
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="investmentPotentials">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="kyc5App.investmentPotential.educationQualification">Education Qualification</span></th>
+            <th><span jhiTranslate="kyc5App.investmentPotential.occupation">Occupation</span></th>
+            <th><span jhiTranslate="kyc5App.investmentPotential.annualIncome">Annual Income</span></th>
+            <th><span jhiTranslate="kyc5App.investmentPotential.netWorth">Net Worth</span></th>
+            <th><span jhiTranslate="kyc5App.investmentPotential.networthDeclarationDate">Networth Declaration Date</span></th>
+            <th><span jhiTranslate="kyc5App.investmentPotential.pepRelative">Pep Relative</span></th>
+            <th><span jhiTranslate="kyc5App.investmentPotential.pmlaRiskCategory">Pmla Risk Category</span></th>
+            <th><span jhiTranslate="kyc5App.investmentPotential.pmlaRiskCategoryReason">Pmla Risk Category Reason</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let investmentPotential of investmentPotentials ;trackBy: trackId">
+                <td><a [routerLink]="['/investment-potential', investmentPotential.id, 'view' ]">{{investmentPotential.id}}</a></td>
+                <td>{{investmentPotential.educationQualification}}</td>
+                <td>{{investmentPotential.occupation}}</td>
+                <td>{{investmentPotential.annualIncome}}</td>
+                <td>{{investmentPotential.netWorth}}</td>
+                <td>{{investmentPotential.networthDeclarationDate | date:'mediumDate'}}</td>
+                <td>{{investmentPotential.pepRelative}}</td>
+                <td>{{investmentPotential.pmlaRiskCategory}}</td>
+                <td>{{investmentPotential.pmlaRiskCategoryReason}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/investment-potential', investmentPotential.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/investment-potential', investmentPotential.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'investment-potential/'+ investmentPotential.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="depositoryInfo">
+            <h2><span jhiTranslate="kyc5App.depositoryInfo.detail.title">Depository Info</span> {{depositoryInfo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="kyc5App.depositoryInfo.haveAccountWithOtherDP">Have Account With Other DP</span></dt>
+                <dd>
+                    <span>{{depositoryInfo.haveAccountWithOtherDP}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.depositoryInfo.haveSMSEnabled">Have SMS Enabled</span></dt>
+                <dd>
+                    <span>{{depositoryInfo.haveSMSEnabled}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.depositoryInfo.statementFrequency">Statement Frequency</span></dt>
+                <dd>
+                    <span>{{depositoryInfo.statementFrequency}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.depositoryInfo.dpScheme">Dp Scheme</span></dt>
+                <dd>
+                    <span>{{depositoryInfo.dpScheme}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.depositoryInfo.depositoryName">Depository Name</span></dt>
+                <dd>
+                    <span>{{depositoryInfo.depositoryName}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.depositoryInfo.brokerName">Broker Name</span></dt>
+                <dd>
+                    <span>{{depositoryInfo.brokerName}}</span>
+                </dd>
+                <dt><span jhiTranslate="kyc5App.depositoryInfo.nameAsPerDemat">Name As Per Demat</span></dt>
+                <dd>
+                    <span>{{depositoryInfo.nameAsPerDemat}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/depository-info', depositoryInfo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
