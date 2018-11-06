@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { IApplicationProspect } from 'app/shared/model/application-prospect.model';
 import { ApplicationProspectService } from './application-prospect.service';
@@ -16,6 +16,7 @@ import { ITradingInfo } from 'app/shared/model/trading-info.model';
 import { TradingInfoService } from 'app/entities/trading-info';
 import { IDepositoryInfo } from 'app/shared/model/depository-info.model';
 import { DepositoryInfoService } from 'app/entities/depository-info';
+import { StateStorageService, LoginService } from 'app/core';
 
 @Component({
     selector: 'jhi-application-prospect-update',
@@ -30,25 +31,20 @@ export class ApplicationProspectUpdateComponent implements OnInit {
     otp: number;
     filledOTP: number;
 
-    personalinformations: IPersonalInformation[];
-
-    investmentpotentials: IInvestmentPotential[];
-
-    nominees: INominee[];
-
-    tradinginfos: ITradingInfo[];
-
-    depositories: IDepositoryInfo[];
+    authenticationError: boolean;
+    password: string;
+    rememberMe: boolean;
+    username: string;
+    credentials: any;
 
     constructor(
         private jhiAlertService: JhiAlertService,
+        private eventManager: JhiEventManager,
+        private loginService: LoginService,
+        private stateStorageService: StateStorageService,
         private applicationProspectService: ApplicationProspectService,
-        private personalInformationService: PersonalInformationService,
-        private investmentPotentialService: InvestmentPotentialService,
-        private nomineeService: NomineeService,
-        private tradingInfoService: TradingInfoService,
-        private depositoryInfoService: DepositoryInfoService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -60,84 +56,6 @@ export class ApplicationProspectUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ applicationProspect }) => {
             this.applicationProspect = applicationProspect;
         });
-
-        if (this.loggedIn) {
-            this.personalInformationService.query({ 'applicationProspectId.specified': 'false' }).subscribe(
-                (res: HttpResponse<IPersonalInformation[]>) => {
-                    if (!this.applicationProspect.personalInformationId) {
-                        this.personalinformations = res.body;
-                    } else {
-                        this.personalInformationService.find(this.applicationProspect.personalInformationId).subscribe(
-                            (subRes: HttpResponse<IPersonalInformation>) => {
-                                this.personalinformations = [subRes.body].concat(res.body);
-                            },
-                            (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                        );
-                    }
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-            this.investmentPotentialService.query({ 'applicationProspectId.specified': 'false' }).subscribe(
-                (res: HttpResponse<IInvestmentPotential[]>) => {
-                    if (!this.applicationProspect.investmentPotentialId) {
-                        this.investmentpotentials = res.body;
-                    } else {
-                        this.investmentPotentialService.find(this.applicationProspect.investmentPotentialId).subscribe(
-                            (subRes: HttpResponse<IInvestmentPotential>) => {
-                                this.investmentpotentials = [subRes.body].concat(res.body);
-                            },
-                            (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                        );
-                    }
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-            this.nomineeService.query({ 'applicationProspectId.specified': 'false' }).subscribe(
-                (res: HttpResponse<INominee[]>) => {
-                    if (!this.applicationProspect.nomineeId) {
-                        this.nominees = res.body;
-                    } else {
-                        this.nomineeService.find(this.applicationProspect.nomineeId).subscribe(
-                            (subRes: HttpResponse<INominee>) => {
-                                this.nominees = [subRes.body].concat(res.body);
-                            },
-                            (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                        );
-                    }
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-            this.tradingInfoService.query({ 'applicationProspectId.specified': 'false' }).subscribe(
-                (res: HttpResponse<ITradingInfo[]>) => {
-                    if (!this.applicationProspect.tradingInfoId) {
-                        this.tradinginfos = res.body;
-                    } else {
-                        this.tradingInfoService.find(this.applicationProspect.tradingInfoId).subscribe(
-                            (subRes: HttpResponse<ITradingInfo>) => {
-                                this.tradinginfos = [subRes.body].concat(res.body);
-                            },
-                            (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                        );
-                    }
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-            this.depositoryInfoService.query({ 'applicationProspectId.specified': 'false' }).subscribe(
-                (res: HttpResponse<IDepositoryInfo[]>) => {
-                    if (!this.applicationProspect.depositoryId) {
-                        this.depositories = res.body;
-                    } else {
-                        this.depositoryInfoService.find(this.applicationProspect.depositoryId).subscribe(
-                            (subRes: HttpResponse<IDepositoryInfo>) => {
-                                this.depositories = [subRes.body].concat(res.body);
-                            },
-                            (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                        );
-                    }
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-        }
     }
 
     sendOTP() {
@@ -165,10 +83,39 @@ export class ApplicationProspectUpdateComponent implements OnInit {
     private subscribeToSaveResponse(result: Observable<HttpResponse<IApplicationProspect>>) {
         result.subscribe((res: HttpResponse<IApplicationProspect>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
+    login() {
+        this.loginService
+            .login({
+                username: this.username,
+                password: this.password,
+                rememberMe: this.rememberMe
+            })
+            .then(() => {
+                this.authenticationError = false;
 
+                if (this.router.url === '/register' || /^\/activate\//.test(this.router.url) || /^\/reset\//.test(this.router.url)) {
+                    this.router.navigate(['']);
+                }
+
+                this.eventManager.broadcast({
+                    name: 'authenticationSuccess',
+                    content: 'Sending Authentication Success'
+                });
+
+                // previousState was set in the authExpiredInterceptor before being redirected to login modal.
+                // since login is succesful, go to stored previousState and clear previousState
+                const redirect = this.stateStorageService.getUrl();
+                if (redirect) {
+                    this.stateStorageService.storeUrl(null);
+                    this.router.navigate([redirect]);
+                }
+            })
+            .catch(() => {
+                this.authenticationError = true;
+            });
+    }
     private onSaveSuccess() {
         this.isSaving = false;
-        this.previousState();
     }
 
     private onSaveError() {
@@ -177,25 +124,5 @@ export class ApplicationProspectUpdateComponent implements OnInit {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
-    }
-
-    trackPersonalInformationById(index: number, item: IPersonalInformation) {
-        return item.id;
-    }
-
-    trackInvestmentPotentialById(index: number, item: IInvestmentPotential) {
-        return item.id;
-    }
-
-    trackNomineeById(index: number, item: INominee) {
-        return item.id;
-    }
-
-    trackTradingInfoById(index: number, item: ITradingInfo) {
-        return item.id;
-    }
-
-    trackDepositoryInfoById(index: number, item: IDepositoryInfo) {
-        return item.id;
     }
 }
