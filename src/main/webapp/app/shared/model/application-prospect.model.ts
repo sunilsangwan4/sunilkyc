@@ -15,6 +15,7 @@ export interface IApplicationProspect {
     depositoryId?: number;
     addresses?: IAddress[];
     bankInformations?: IBankInformation[];
+    identityVerificationId?: number;
 }
 
 export class ApplicationProspect implements IApplicationProspect {
@@ -31,6 +32,7 @@ export class ApplicationProspect implements IApplicationProspect {
         public tradingInfoId?: number,
         public depositoryId?: number,
         public addresses?: IAddress[],
-        public bankInformations?: IBankInformation[]
+        public bankInformations?: IBankInformation[],
+        public identityVerificationId?: number
     ) {}
 }

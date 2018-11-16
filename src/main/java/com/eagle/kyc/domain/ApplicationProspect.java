@@ -68,6 +68,9 @@ public class ApplicationProspect implements Serializable {
     private Set<Address> addresses = new HashSet<>();
     @OneToMany(mappedBy = "applicationProspect")
     private Set<BankInformation> bankInformations = new HashSet<>();
+    @OneToOne    @JoinColumn(unique = true)
+    private IdentityVerification identityVerification;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -255,6 +258,19 @@ public class ApplicationProspect implements Serializable {
 
     public void setBankInformations(Set<BankInformation> bankInformations) {
         this.bankInformations = bankInformations;
+    }
+
+    public IdentityVerification getIdentityVerification() {
+        return identityVerification;
+    }
+
+    public ApplicationProspect identityVerification(IdentityVerification identityVerification) {
+        this.identityVerification = identityVerification;
+        return this;
+    }
+
+    public void setIdentityVerification(IdentityVerification identityVerification) {
+        this.identityVerification = identityVerification;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

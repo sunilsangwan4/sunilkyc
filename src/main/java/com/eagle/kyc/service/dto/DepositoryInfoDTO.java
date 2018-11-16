@@ -14,22 +14,16 @@ public class DepositoryInfoDTO implements Serializable {
     @NotNull
     private Boolean haveAccountWithOtherDP;
 
-    @NotNull
     private Boolean haveSMSEnabled;
 
-    @NotNull
     private String statementFrequency;
 
-    @NotNull
     private String dpScheme;
 
-    @NotNull
     private String depositoryName;
 
-    @NotNull
     private String brokerName;
 
-    @NotNull
     private String nameAsPerDemat;
 
     public Long getId() {

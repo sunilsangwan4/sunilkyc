@@ -1,7 +1,7 @@
-<div class="row justify-content-center">
+<div class="row content">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-identity-verification-heading" jhiTranslate="kyc5App.identityVerification.home.createOrEditLabel">Create or edit a Identity Verification</h2>
+            <h5 class="header-content" id="jhi-identity-verification-heading" jhiTranslate="kyc5App.identityVerification.home.createOrEditLabel">Create or edit a Identity Verification</h5>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!identityVerification.id">
@@ -28,11 +28,7 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.identityVerification.aadharNoVerified" for="field_aadharNoVerified">Aadhar No Verified</label>
-                    <input type="checkbox" class="form-control" name="aadharNoVerified" id="field_aadharNoVerified"
-                        [(ngModel)]="identityVerification.aadharNoVerified" />
-                </div>
+               
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="kyc5App.identityVerification.panNo" for="field_panNo">Pan No</label>
                     <input type="text" class="form-control" name="panNo" id="field_panNo"
@@ -52,12 +48,8 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.identityVerification.panNoVerified" for="field_panNoVerified">Pan No Verified</label>
-                    <input type="checkbox" class="form-control" name="panNoVerified" id="field_panNoVerified"
-                        [(ngModel)]="identityVerification.panNoVerified" />
-                </div>
-                <div class="form-group">
+               
+                <div class="form-group" style="width: 60%">
                     <label class="form-control-label" jhiTranslate="kyc5App.identityVerification.dateOfBirth" for="field_dateOfBirth">Date Of Birth</label>
                     <div class="input-group">
                         <input id="field_dateOfBirth" type="text" class="form-control" name="dateOfBirth" ngbDatepicker  #dateOfBirthDp="ngbDatepicker" [(ngModel)]="identityVerification.dateOfBirth"
@@ -76,11 +68,9 @@
 
             </div>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
+               
                 <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span >Save & Next</span>
                 </button>
             </div>
         </form>

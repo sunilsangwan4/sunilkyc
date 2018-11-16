@@ -46,19 +46,15 @@
             </column>
 
             <column name="birth_country" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
 
             <column name="birth_city" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
 
             <column name="jurisdiction_country" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
 
             <column name="tax_identification_no" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

@@ -104,7 +104,7 @@ export class JhiAlertErrorComponent implements OnDestroy {
                     type: 'danger',
                     msg: key,
                     params: data,
-                    timeout: 5000,
+                    timeout: 50000,
                     toast: this.alertService.isToast(),
                     scoped: true
                 },

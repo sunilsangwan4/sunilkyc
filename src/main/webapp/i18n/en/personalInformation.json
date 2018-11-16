@@ -4,8 +4,8 @@
         "personalInformation" : {
             "home": {
                 "title": "Personal Informations",
-                "createLabel": "Create a new Personal Information",
-                "createOrEditLabel": "Create or edit a Personal Information"
+                "createLabel": "Please fill the below detail to further process your account",
+                "createOrEditLabel": "Please fill the below detail to further process your account"
             },
             "created": "A new Personal Information is created with identifier {{ param }}",
             "updated": "A Personal Information is updated with identifier {{ param }}",

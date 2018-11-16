@@ -27,7 +27,8 @@
             "tradingInfo": "Trading Info",
             "depository": "Depository",
             "addresses": "Addresses",
-            "bankInformation": "Bank Information"
+            "bankInformation": "Bank Information",
+            "identityVerification": "Identity Verification"
         }
     }
 }

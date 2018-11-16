@@ -48,13 +48,13 @@ export const personalInformationRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'personal-information/new',
+        path: 'personal-information/new/:prospectId',
         component: PersonalInformationUpdateComponent,
         resolve: {
             personalInformation: PersonalInformationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.personalInformation.home.title'
         },
         canActivate: [UserRouteAccessService]

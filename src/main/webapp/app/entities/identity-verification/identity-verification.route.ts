@@ -48,13 +48,13 @@ export const identityVerificationRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'identity-verification/new',
+        path: 'identity-verification/new/:prospectId',
         component: IdentityVerificationUpdateComponent,
         resolve: {
             identityVerification: IdentityVerificationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.identityVerification.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -66,7 +66,7 @@ export const identityVerificationRoute: Routes = [
             identityVerification: IdentityVerificationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.identityVerification.home.title'
         },
         canActivate: [UserRouteAccessService]

@@ -41,6 +41,8 @@ public class ApplicationProspectDTO implements Serializable {
 
     private Long depositoryId;
 
+    private Long identityVerificationId;
+
     public Long getId() {
         return id;
     }
@@ -129,6 +131,14 @@ public class ApplicationProspectDTO implements Serializable {
         this.depositoryId = depositoryInfoId;
     }
 
+    public Long getIdentityVerificationId() {
+        return identityVerificationId;
+    }
+
+    public void setIdentityVerificationId(Long identityVerificationId) {
+        this.identityVerificationId = identityVerificationId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -164,6 +174,7 @@ public class ApplicationProspectDTO implements Serializable {
             ", nominee=" + getNomineeId() +
             ", tradingInfo=" + getTradingInfoId() +
             ", depository=" + getDepositoryId() +
+            ", identityVerification=" + getIdentityVerificationId() +
             "}";
     }
 }

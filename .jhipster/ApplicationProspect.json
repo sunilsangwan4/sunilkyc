@@ -1,5 +1,68 @@
 {
-    "name": "ApplicationProspect",
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "personalInformation",
+            "otherEntityName": "personalInformation",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "investmentPotential",
+            "otherEntityName": "investmentPotential",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "nominee",
+            "otherEntityName": "nominee",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "tradingInfo",
+            "otherEntityName": "tradingInfo",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "depository",
+            "otherEntityName": "depositoryInfo",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "addresses",
+            "otherEntityName": "address",
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "bankInformation",
+            "otherEntityName": "bankInformation",
+            "otherEntityRelationshipName": "applicationProspect"
+        },
+        {
+            "relationshipName": "identityVerification",
+            "otherEntityName": "identityVerification",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "applicationProspect"
+        }
+    ],
     "fields": [
         {
             "fieldName": "fullName",
@@ -59,67 +122,11 @@
             "fieldValidateRulesMaxlength": 20
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "personalInformation",
-            "otherEntityName": "personalInformation",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "applicationProspect"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "investmentPotential",
-            "otherEntityName": "investmentPotential",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "applicationProspect"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "nominee",
-            "otherEntityName": "nominee",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "applicationProspect"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "tradingInfo",
-            "otherEntityName": "tradingInfo",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "applicationProspect"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "depository",
-            "otherEntityName": "depositoryInfo",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "applicationProspect"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "addresses",
-            "otherEntityName": "address",
-            "otherEntityRelationshipName": "applicationProspect"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "bankInformation",
-            "otherEntityName": "bankInformation",
-            "otherEntityRelationshipName": "applicationProspect"
-        }
-    ],
     "changelogDate": "20181103124724",
-    "entityTableName": "application_prospect",
     "dto": "mapstruct",
-    "pagination": "pagination",
+    "searchEngine": false,
     "service": "serviceImpl",
+    "entityTableName": "application_prospect",
     "jpaMetamodelFiltering": true,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+    "pagination": "pagination"
 }

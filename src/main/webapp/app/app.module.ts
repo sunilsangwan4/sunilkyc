@@ -14,7 +14,6 @@ import { NotificationInterceptor } from './blocks/interceptor/notification.inter
 import { Kyc5SharedModule } from 'app/shared';
 import { Kyc5CoreModule } from 'app/core';
 import { Kyc5AppRoutingModule } from './app-routing.module';
-import { Kyc5HomeModule } from './home/home.module';
 import { Kyc5AccountModule } from './account/account.module';
 import { Kyc5EntityModule } from './entities/entity.module';
 import * as moment from 'moment';
@@ -28,7 +27,6 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         Kyc5SharedModule,
         Kyc5CoreModule,
-        Kyc5HomeModule,
         Kyc5AccountModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
         Kyc5EntityModule

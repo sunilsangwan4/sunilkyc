@@ -4,6 +4,8 @@ package com.eagle.kyc.domain;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -41,6 +43,10 @@ public class IdentityVerification implements Serializable {
     @NotNull
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
+    
+    @OneToOne(mappedBy = "identityVerification")
+    @JsonIgnore
+    private ApplicationProspect applicationProspect;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -81,7 +87,16 @@ public class IdentityVerification implements Serializable {
         return panNo;
     }
 
-    public IdentityVerification panNo(String panNo) {
+    
+    public ApplicationProspect getApplicationProspect() {
+		return applicationProspect;
+	}
+
+	public void setApplicationProspect(ApplicationProspect applicationProspect) {
+		this.applicationProspect = applicationProspect;
+	}
+
+	public IdentityVerification panNo(String panNo) {
         this.panNo = panNo;
         return this;
     }

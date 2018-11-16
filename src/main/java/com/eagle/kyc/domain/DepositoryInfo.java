@@ -26,27 +26,21 @@ public class DepositoryInfo implements Serializable {
     @Column(name = "have_account_with_other_dp", nullable = false)
     private Boolean haveAccountWithOtherDP;
 
-    @NotNull
     @Column(name = "have_sms_enabled", nullable = false)
     private Boolean haveSMSEnabled;
 
-    @NotNull
     @Column(name = "statement_frequency", nullable = false)
     private String statementFrequency;
 
-    @NotNull
     @Column(name = "dp_scheme", nullable = false)
     private String dpScheme;
 
-    @NotNull
     @Column(name = "depository_name", nullable = false)
     private String depositoryName;
 
-    @NotNull
     @Column(name = "broker_name", nullable = false)
     private String brokerName;
 
-    @NotNull
     @Column(name = "name_as_per_demat", nullable = false)
     private String nameAsPerDemat;
 

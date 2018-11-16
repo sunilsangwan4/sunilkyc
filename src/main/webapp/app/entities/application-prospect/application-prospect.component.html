@@ -25,6 +25,7 @@
             <th jhiSortBy="nomineeId"><span jhiTranslate="kyc5App.applicationProspect.nominee">Nominee</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="tradingInfoId"><span jhiTranslate="kyc5App.applicationProspect.tradingInfo">Trading Info</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="depositoryId"><span jhiTranslate="kyc5App.applicationProspect.depository">Depository</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="identityVerificationId"><span jhiTranslate="kyc5App.applicationProspect.identityVerification">Identity Verification</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -59,6 +60,11 @@
                 <td>
                     <div *ngIf="applicationProspect.depositoryId">
                         <a [routerLink]="['../depository-info', applicationProspect.depositoryId , 'view' ]" >{{applicationProspect.depositoryId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="applicationProspect.identityVerificationId">
+                        <a [routerLink]="['../identity-verification', applicationProspect.identityVerificationId , 'view' ]" >{{applicationProspect.identityVerificationId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

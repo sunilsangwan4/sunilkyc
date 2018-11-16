@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JhiAlertService } from 'ng-jhipster';
@@ -16,14 +16,15 @@ import { ApplicationProspectService } from 'app/entities/application-prospect';
 export class TradingInfoUpdateComponent implements OnInit {
     tradingInfo: ITradingInfo;
     isSaving: boolean;
-
-    applicationprospects: IApplicationProspect[];
+    applicationProspect: IApplicationProspect;
+    prospectId: number;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private tradingInfoService: TradingInfoService,
         private applicationProspectService: ApplicationProspectService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -31,12 +32,15 @@ export class TradingInfoUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ tradingInfo }) => {
             this.tradingInfo = tradingInfo;
         });
-        this.applicationProspectService.query().subscribe(
-            (res: HttpResponse<IApplicationProspect[]>) => {
-                this.applicationprospects = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.activatedRoute.params.subscribe(params => {
+            this.prospectId = params.prospectId; // --> Name must match wanted parameter
+        });
+        this.applicationProspectService
+            .find(this.prospectId)
+            .subscribe(
+                (res: HttpResponse<IApplicationProspect>) => (this.applicationProspect = res.body),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
     }
 
     previousState() {
@@ -53,12 +57,13 @@ export class TradingInfoUpdateComponent implements OnInit {
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<ITradingInfo>>) {
-        result.subscribe((res: HttpResponse<ITradingInfo>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+        result.subscribe((res: HttpResponse<ITradingInfo>) => this.onSaveSuccess(res), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
-        this.isSaving = false;
-        this.previousState();
+    private onSaveSuccess(res: HttpResponse<ITradingInfo>) {
+        this.applicationProspect.tradingInfoId = res.body.id;
+        this.applicationProspectService.update(this.applicationProspect);
+        this.router.navigate(['depository-info/new', this.prospectId]);
     }
 
     private onSaveError() {

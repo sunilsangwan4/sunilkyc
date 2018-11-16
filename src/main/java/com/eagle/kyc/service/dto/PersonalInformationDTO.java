@@ -29,16 +29,16 @@ public class PersonalInformationDTO implements Serializable {
     @NotNull
     private String indianTaxPayer;
 
-    @NotNull
+    
     private String birthCountry;
 
-    @NotNull
+
     private String birthCity;
 
-    @NotNull
+    
     private String jurisdictionCountry;
 
-    @NotNull
+   
     private String taxIdentificationNo;
 
     public Long getId() {

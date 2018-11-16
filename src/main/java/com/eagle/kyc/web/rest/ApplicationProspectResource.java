@@ -59,7 +59,6 @@ public class ApplicationProspectResource {
         if (applicationProspectDTO.getId() != null) {
             throw new BadRequestAlertException("A new applicationProspect cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        
         ApplicationProspectDTO result = applicationProspectService.save(applicationProspectDTO);
         return ResponseEntity.created(new URI("/api/application-prospects/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

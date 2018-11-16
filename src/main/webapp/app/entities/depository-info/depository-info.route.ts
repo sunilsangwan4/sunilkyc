@@ -48,13 +48,13 @@ export const depositoryInfoRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'depository-info/new',
+        path: 'depository-info/new/:prospectId',
         component: DepositoryInfoUpdateComponent,
         resolve: {
             depositoryInfo: DepositoryInfoResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.depositoryInfo.home.title'
         },
         canActivate: [UserRouteAccessService]

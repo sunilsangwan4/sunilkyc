@@ -10,6 +10,7 @@ import com.eagle.kyc.domain.TradingInfo;
 import com.eagle.kyc.domain.DepositoryInfo;
 import com.eagle.kyc.domain.Address;
 import com.eagle.kyc.domain.BankInformation;
+import com.eagle.kyc.domain.IdentityVerification;
 import com.eagle.kyc.repository.ApplicationProspectRepository;
 import com.eagle.kyc.service.ApplicationProspectService;
 import com.eagle.kyc.service.dto.ApplicationProspectDTO;
@@ -625,6 +626,25 @@ public class ApplicationProspectResourceIntTest {
 
         // Get all the applicationProspectList where bankInformation equals to bankInformationId + 1
         defaultApplicationProspectShouldNotBeFound("bankInformationId.equals=" + (bankInformationId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllApplicationProspectsByIdentityVerificationIsEqualToSomething() throws Exception {
+        // Initialize the database
+        IdentityVerification identityVerification = IdentityVerificationResourceIntTest.createEntity(em);
+        em.persist(identityVerification);
+        em.flush();
+        applicationProspect.setIdentityVerification(identityVerification);
+        applicationProspectRepository.saveAndFlush(applicationProspect);
+        Long identityVerificationId = identityVerification.getId();
+
+        // Get all the applicationProspectList where identityVerification equals to identityVerificationId
+        defaultApplicationProspectShouldBeFound("identityVerificationId.equals=" + identityVerificationId);
+
+        // Get all the applicationProspectList where identityVerification equals to identityVerificationId + 1
+        defaultApplicationProspectShouldNotBeFound("identityVerificationId.equals=" + (identityVerificationId + 1));
     }
 
     /**

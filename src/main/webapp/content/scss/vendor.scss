@@ -13,4 +13,13 @@ eg $input-color: red;
     margin-left: 200px;
     margin-bottom: 100px;
 }
+
+.header-content {
+    border-bottom: 4px solid #28a745;
+    padding-top: 25px;
+    padding-bottom: 16px;
+    color: #28a745 !important;
+    display: block;
+    margin-bottom: 25px;
+}
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */

@@ -4,8 +4,8 @@
         "identityVerification" : {
             "home": {
                 "title": "Identity Verifications",
-                "createLabel": "Create a new Identity Verification",
-                "createOrEditLabel": "Create or edit a Identity Verification"
+                "createLabel": "Please let us know your identity.",
+                "createOrEditLabel": "Please let us know your identity"
             },
             "created": "A new Identity Verification is created with identifier {{ param }}",
             "updated": "A Identity Verification is updated with identifier {{ param }}",

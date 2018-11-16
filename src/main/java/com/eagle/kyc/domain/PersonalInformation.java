@@ -46,19 +46,15 @@ public class PersonalInformation implements Serializable {
     @Column(name = "indian_tax_payer", nullable = false)
     private String indianTaxPayer;
 
-    @NotNull
     @Column(name = "birth_country", nullable = false)
     private String birthCountry;
 
-    @NotNull
     @Column(name = "birth_city", nullable = false)
     private String birthCity;
 
-    @NotNull
     @Column(name = "jurisdiction_country", nullable = false)
     private String jurisdictionCountry;
 
-    @NotNull
     @Column(name = "tax_identification_no", nullable = false)
     private String taxIdentificationNo;
 

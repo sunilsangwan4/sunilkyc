@@ -38,5 +38,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="depository_info"/>
 
+        <addForeignKeyConstraint baseColumnNames="identity_verification_id"
+                                 baseTableName="application_prospect"
+                                 constraintName="fk_application_prospect_identity_verification_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="identity_verification"/>
+
     </changeSet>
 </databaseChangeLog>

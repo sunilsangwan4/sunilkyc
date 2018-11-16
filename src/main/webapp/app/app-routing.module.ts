@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { errorRoute, navbarRoute } from './layouts';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 
@@ -12,7 +12,7 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
                 ...LAYOUT_ROUTES,
                 {
                     path: '',
-                    redirectTo: '/application-prospect/new',
+                    redirectTo: 'application-prospect/new',
                     pathMatch: 'full'
                 },
                 {
@@ -23,6 +23,6 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
             { useHash: true, enableTracing: DEBUG_INFO_ENABLED }
         )
     ],
-    exports: [RouterModule, Router]
+    exports: [RouterModule]
 })
 export class Kyc5AppRoutingModule {}

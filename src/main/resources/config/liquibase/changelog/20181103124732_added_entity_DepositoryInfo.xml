@@ -24,29 +24,23 @@
             <column name="have_account_with_other_dp" type="boolean">
                 <constraints nullable="false" />
             </column>
-
+    
             <column name="have_sms_enabled" type="boolean">
-                <constraints nullable="false" />
             </column>
 
             <column name="statement_frequency" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
 
             <column name="dp_scheme" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
 
             <column name="depository_name" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
 
             <column name="broker_name" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
 
             <column name="name_as_per_demat" type="varchar(255)">
-                <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

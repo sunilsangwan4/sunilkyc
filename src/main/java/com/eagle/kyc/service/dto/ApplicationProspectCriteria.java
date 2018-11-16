@@ -48,6 +48,8 @@ public class ApplicationProspectCriteria implements Serializable {
 
     private LongFilter bankInformationId;
 
+    private LongFilter identityVerificationId;
+
     public ApplicationProspectCriteria() {
     }
 
@@ -155,6 +157,14 @@ public class ApplicationProspectCriteria implements Serializable {
         this.bankInformationId = bankInformationId;
     }
 
+    public LongFilter getIdentityVerificationId() {
+        return identityVerificationId;
+    }
+
+    public void setIdentityVerificationId(LongFilter identityVerificationId) {
+        this.identityVerificationId = identityVerificationId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -178,7 +188,8 @@ public class ApplicationProspectCriteria implements Serializable {
             Objects.equals(tradingInfoId, that.tradingInfoId) &&
             Objects.equals(depositoryId, that.depositoryId) &&
             Objects.equals(addressesId, that.addressesId) &&
-            Objects.equals(bankInformationId, that.bankInformationId);
+            Objects.equals(bankInformationId, that.bankInformationId) &&
+            Objects.equals(identityVerificationId, that.identityVerificationId);
     }
 
     @Override
@@ -196,7 +207,8 @@ public class ApplicationProspectCriteria implements Serializable {
         tradingInfoId,
         depositoryId,
         addressesId,
-        bankInformationId
+        bankInformationId,
+        identityVerificationId
         );
     }
 
@@ -216,6 +228,7 @@ public class ApplicationProspectCriteria implements Serializable {
                 (depositoryId != null ? "depositoryId=" + depositoryId + ", " : "") +
                 (addressesId != null ? "addressesId=" + addressesId + ", " : "") +
                 (bankInformationId != null ? "bankInformationId=" + bankInformationId + ", " : "") +
+                (identityVerificationId != null ? "identityVerificationId=" + identityVerificationId + ", " : "") +
             "}";
     }
 

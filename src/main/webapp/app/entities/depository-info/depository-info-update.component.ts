@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JhiAlertService } from 'ng-jhipster';
@@ -17,13 +17,14 @@ export class DepositoryInfoUpdateComponent implements OnInit {
     depositoryInfo: IDepositoryInfo;
     isSaving: boolean;
 
-    applicationprospects: IApplicationProspect[];
-
+    applicationProspect: IApplicationProspect;
+    prospectId: number;
     constructor(
         private jhiAlertService: JhiAlertService,
         private depositoryInfoService: DepositoryInfoService,
         private applicationProspectService: ApplicationProspectService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -31,12 +32,17 @@ export class DepositoryInfoUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ depositoryInfo }) => {
             this.depositoryInfo = depositoryInfo;
         });
-        this.applicationProspectService.query().subscribe(
-            (res: HttpResponse<IApplicationProspect[]>) => {
-                this.applicationprospects = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+
+        this.activatedRoute.params.subscribe(params => {
+            this.prospectId = params.prospectId; // --> Name must match wanted parameter
+        });
+        this.applicationProspectService
+            .find(this.prospectId)
+            .subscribe(
+                (res: HttpResponse<IApplicationProspect>) => (this.applicationProspect = res.body),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+        this.depositoryInfo.haveAccountWithOtherDP = false;
     }
 
     previousState() {
@@ -53,12 +59,14 @@ export class DepositoryInfoUpdateComponent implements OnInit {
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<IDepositoryInfo>>) {
-        result.subscribe((res: HttpResponse<IDepositoryInfo>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+        result.subscribe((res: HttpResponse<IDepositoryInfo>) => this.onSaveSuccess(res), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    private onSaveSuccess(res: HttpResponse<IDepositoryInfo>) {
         this.isSaving = false;
-        this.previousState();
+        this.applicationProspect.depositoryId = res.body.id;
+        this.applicationProspectService.update(this.applicationProspect);
+        this.router.navigate(['investment-potential/new', this.prospectId]);
     }
 
     private onSaveError() {

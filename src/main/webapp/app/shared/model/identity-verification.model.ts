@@ -7,6 +7,7 @@ export interface IIdentityVerification {
     panNo?: string;
     panNoVerified?: boolean;
     dateOfBirth?: Moment;
+    applicationProspectId?: number;
 }
 
 export class IdentityVerification implements IIdentityVerification {
@@ -16,7 +17,8 @@ export class IdentityVerification implements IIdentityVerification {
         public aadharNoVerified?: boolean,
         public panNo?: string,
         public panNoVerified?: boolean,
-        public dateOfBirth?: Moment
+        public dateOfBirth?: Moment,
+        public applicationProspectId?: number
     ) {
         this.aadharNoVerified = this.aadharNoVerified || false;
         this.panNoVerified = this.panNoVerified || false;

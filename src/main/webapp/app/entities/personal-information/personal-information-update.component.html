@@ -1,134 +1,167 @@
-<div class="row justify-content-center">
-    <div class="col-8">
+<div class="row content">
+    <div class="col-12">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-personal-information-heading" jhiTranslate="kyc5App.personalInformation.home.createOrEditLabel">Create or edit a Personal Information</h2>
-            <div>
-                <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!personalInformation.id">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="personalInformation.id" readonly />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.fatherName" for="field_fatherName">Father Name</label>
-                    <input type="text" class="form-control" name="fatherName" id="field_fatherName"
-                        [(ngModel)]="personalInformation.fatherName" required/>
-                    <div [hidden]="!(editForm.controls.fatherName?.dirty && editForm.controls.fatherName?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.fatherName?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+            <h5 style="width: 83%" class="header-content" id="jhi-personal-information-heading" jhiTranslate="kyc5App.personalInformation.home.createOrEditLabel">Create or edit a Personal Information</h5> 
+            <jhi-alert-error></jhi-alert-error>
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.fatherName" for="field_fatherName">Father Name</label>
+                        <input type="text" class="form-control" name="fatherName" id="field_fatherName" [(ngModel)]="personalInformation.fatherName"
+                            required/>
+                        <div [hidden]="!(editForm.controls.fatherName?.dirty && editForm.controls.fatherName?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.fatherName?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.motherName" for="field_motherName">Mother Name</label>
-                    <input type="text" class="form-control" name="motherName" id="field_motherName"
-                        [(ngModel)]="personalInformation.motherName" required/>
-                    <div [hidden]="!(editForm.controls.motherName?.dirty && editForm.controls.motherName?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.motherName?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.gender" for="field_gender">Gender</label>
+                       <div>
+                          <label class="radio-inline"><input type="radio"  #male name="gender" value="MALE" (click)="personalInformation.gender = male.value">Male</label>
+                          <label class="radio-inline" style="padding-left: 15px;"><input type="radio" #female name="gender" value="FEMALE" (click)="personalInformation.gender = female.value">Female</label>
+                       </div>
+                        <div [hidden]="!(editForm.controls.gender?.dirty && editForm.controls.gender?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.gender?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.gender" for="field_gender">Gender</label>
-                    <input type="text" class="form-control" name="gender" id="field_gender"
-                        [(ngModel)]="personalInformation.gender" required/>
-                    <div [hidden]="!(editForm.controls.gender?.dirty && editForm.controls.gender?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.gender?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.nationality" for="field_nationality">Nationality</label>
+                        
+                         <select class="form-control" name="nationality" id="field_nationality" [(ngModel)]="personalInformation.nationality" required>
+                                <option>India</option>
+                                <option>US</option>
+                                <option>UK</option>
+                                <option>CHINA</option>
+                                <option>NEW ZEALAND</option>
+                        </select>
+                       
+                        <div [hidden]="!(editForm.controls.nationality?.dirty && editForm.controls.nationality?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.nationality?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.nationality" for="field_nationality">Nationality</label>
-                    <input type="text" class="form-control" name="nationality" id="field_nationality"
-                        [(ngModel)]="personalInformation.nationality" required/>
-                    <div [hidden]="!(editForm.controls.nationality?.dirty && editForm.controls.nationality?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.nationality?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                    <div class="form-group" [hidden]="personalInformation.indianTaxPayer=='Y'">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.birthCountry" for="field_birthCountry">Birth Country</label>
+                        <select class="form-control" name="birthCountry" id="field_birthCountry" [(ngModel)]="personalInformation.birthCountry" [required]="personalInformation.indianTaxPayer==='N'">
+                                <option>India</option>
+                                <option>US</option>
+                                <option>UK</option>
+                                <option>CHINA</option>
+                                <option>NEW ZEALAND</option>
+                        </select>
+                        <div [hidden]="!(editForm.controls.birthCountry?.dirty && editForm.controls.birthCountry?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.birthCountry?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.maritalStatus" for="field_maritalStatus">Marital Status</label>
-                    <input type="text" class="form-control" name="maritalStatus" id="field_maritalStatus"
-                        [(ngModel)]="personalInformation.maritalStatus" required/>
-                    <div [hidden]="!(editForm.controls.maritalStatus?.dirty && editForm.controls.maritalStatus?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.maritalStatus?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                    <div class="form-group" [hidden]="personalInformation.indianTaxPayer=='Y'">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.birthCity" for="field_birthCity">Birth City</label>
+                        
+                        <select class="form-control" name="birthCity" id="field_birthCity" [(ngModel)]="personalInformation.birthCity" [required]="personalInformation.indianTaxPayer==='N'">
+                                <option>Delhi/NCR</option>
+                                <option>Mumbai</option>
+                                <option>Chennai</option>
+                                <option>Gurgaon</option>
+                                <option>Other</option>
+                        </select>
+
+                       
+                        <div [hidden]="!(editForm.controls.birthCity?.dirty && editForm.controls.birthCity?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.birthCity?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
+
+
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.indianTaxPayer" for="field_indianTaxPayer">Indian Tax Payer</label>
-                    <input type="text" class="form-control" name="indianTaxPayer" id="field_indianTaxPayer"
-                        [(ngModel)]="personalInformation.indianTaxPayer" required/>
-                    <div [hidden]="!(editForm.controls.indianTaxPayer?.dirty && editForm.controls.indianTaxPayer?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.indianTaxPayer?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+
+
+                <div class="col-5">
+
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.motherName" for="field_motherName">Mother Name</label>
+                        <input type="text" class="form-control" name="motherName" id="field_motherName" [(ngModel)]="personalInformation.motherName"
+                            required/>
+                        <div [hidden]="!(editForm.controls.motherName?.dirty && editForm.controls.motherName?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.motherName?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.birthCountry" for="field_birthCountry">Birth Country</label>
-                    <input type="text" class="form-control" name="birthCountry" id="field_birthCountry"
-                        [(ngModel)]="personalInformation.birthCountry" required/>
-                    <div [hidden]="!(editForm.controls.birthCountry?.dirty && editForm.controls.birthCountry?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.birthCountry?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.maritalStatus" for="field_maritalStatus">Marital Status</label>
+                        <div>
+                          <label class="radio-inline"><input type="radio"  #married name="maritalStatus" value="Y" (click)="personalInformation.maritalStatus = married.value"/>Yes</label>
+                          <label class="radio-inline" style="padding-left: 15px;"><input type="radio" #unmarried name="maritalStatus" value="N" (click)="personalInformation.maritalStatus = unmarried.value">No</label>
+                        </div>
+                        <div [hidden]="!(editForm.controls.maritalStatus?.dirty && editForm.controls.maritalStatus?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.maritalStatus?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.birthCity" for="field_birthCity">Birth City</label>
-                    <input type="text" class="form-control" name="birthCity" id="field_birthCity"
-                        [(ngModel)]="personalInformation.birthCity" required/>
-                    <div [hidden]="!(editForm.controls.birthCity?.dirty && editForm.controls.birthCity?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.birthCity?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.indianTaxPayer" for="field_indianTaxPayer">Are you an Indian Tax Payer</label>
+                        <div>
+
+                            <label class="radio-inline"><input type="radio"  #yesOption name="indianTaxPayer" value="Y" (click)="personalInformation.indianTaxPayer = yesOption.value" checked>Yes</label>
+                            <label class="radio-inline" style="padding-left: 15px;"><input type="radio" #noOption name="indianTaxPayer" value="N" (click)="personalInformation.indianTaxPayer = noOption.value">No</label>
+                        </div>
+                        
+                       
+                        <div [hidden]="!(editForm.controls.indianTaxPayer?.dirty && editForm.controls.indianTaxPayer?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.indianTaxPayer?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.jurisdictionCountry" for="field_jurisdictionCountry">Jurisdiction Country</label>
-                    <input type="text" class="form-control" name="jurisdictionCountry" id="field_jurisdictionCountry"
-                        [(ngModel)]="personalInformation.jurisdictionCountry" required/>
-                    <div [hidden]="!(editForm.controls.jurisdictionCountry?.dirty && editForm.controls.jurisdictionCountry?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.jurisdictionCountry?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+
+                    <div class="form-group" [hidden]="personalInformation.indianTaxPayer==='Y'">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.jurisdictionCountry" for="field_jurisdictionCountry">Jurisdiction Country</label>
+                        <select class="form-control" name="jurisdictionCountry" id="field_jurisdictionCountry" [(ngModel)]="personalInformation.jurisdictionCountry" [required]="personalInformation.indianTaxPayer==='N'">
+                                <option>India</option>
+                                <option>US</option>
+                                <option>UK</option>
+                                <option>CHINA</option>
+                                <option>NEW ZEALAND</option>
+                        </select>
+                        
+                        <div [hidden]="!(editForm.controls.jurisdictionCountry?.dirty && editForm.controls.jurisdictionCountry?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.jurisdictionCountry?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.taxIdentificationNo" for="field_taxIdentificationNo">Tax Identification No</label>
-                    <input type="text" class="form-control" name="taxIdentificationNo" id="field_taxIdentificationNo"
-                        [(ngModel)]="personalInformation.taxIdentificationNo" required/>
-                    <div [hidden]="!(editForm.controls.taxIdentificationNo?.dirty && editForm.controls.taxIdentificationNo?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.taxIdentificationNo?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                    <div class="form-group" [hidden]="personalInformation.indianTaxPayer=='Y'">
+                        <label class="form-control-label" jhiTranslate="kyc5App.personalInformation.taxIdentificationNo" for="field_taxIdentificationNo">Tax Identification No</label>
+                        <input type="text" class="form-control" name="taxIdentificationNo" id="field_taxIdentificationNo" [(ngModel)]="personalInformation.taxIdentificationNo"
+                            [required]="personalInformation.indianTaxPayer==='N'"/>
+                        <div [hidden]="!(editForm.controls.taxIdentificationNo?.dirty && editForm.controls.taxIdentificationNo?.invalid)">
+                            <small class="form-text text-danger" [hidden]="!editForm.controls.taxIdentificationNo?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
                     </div>
+
                 </div>
+
+
 
             </div>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
+
                 <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;
+                    <span>Save & Next</span>
                 </button>
             </div>
         </form>
     </div>
 </div>
+

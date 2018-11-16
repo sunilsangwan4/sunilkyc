@@ -17,6 +17,7 @@ import { TradingInfoService } from 'app/entities/trading-info';
 import { IDepositoryInfo } from 'app/shared/model/depository-info.model';
 import { DepositoryInfoService } from 'app/entities/depository-info';
 import { StateStorageService, LoginService } from 'app/core';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
     selector: 'jhi-application-prospect-update',
@@ -44,6 +45,7 @@ export class ApplicationProspectUpdateComponent implements OnInit {
         private stateStorageService: StateStorageService,
         private applicationProspectService: ApplicationProspectService,
         private activatedRoute: ActivatedRoute,
+        private localStorage: LocalStorageService,
         private router: Router
     ) {}
 
@@ -81,41 +83,16 @@ export class ApplicationProspectUpdateComponent implements OnInit {
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<IApplicationProspect>>) {
-        result.subscribe((res: HttpResponse<IApplicationProspect>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+        result.subscribe(
+            (res: HttpResponse<IApplicationProspect>) => this.onSaveSuccess(res),
+            (res: HttpErrorResponse) => this.onSaveError()
+        );
     }
-    login() {
-        this.loginService
-            .login({
-                username: this.username,
-                password: this.password,
-                rememberMe: this.rememberMe
-            })
-            .then(() => {
-                this.authenticationError = false;
 
-                if (this.router.url === '/register' || /^\/activate\//.test(this.router.url) || /^\/reset\//.test(this.router.url)) {
-                    this.router.navigate(['']);
-                }
-
-                this.eventManager.broadcast({
-                    name: 'authenticationSuccess',
-                    content: 'Sending Authentication Success'
-                });
-
-                // previousState was set in the authExpiredInterceptor before being redirected to login modal.
-                // since login is succesful, go to stored previousState and clear previousState
-                const redirect = this.stateStorageService.getUrl();
-                if (redirect) {
-                    this.stateStorageService.storeUrl(null);
-                    this.router.navigate([redirect]);
-                }
-            })
-            .catch(() => {
-                this.authenticationError = true;
-            });
-    }
-    private onSaveSuccess() {
+    private onSaveSuccess(res: HttpResponse<IApplicationProspect>) {
         this.isSaving = false;
+        this.localStorage.store('prospectId', res.body.id);
+        this.router.navigate(['identity-verification/new', this.localStorage.retrieve('prospectId')]);
     }
 
     private onSaveError() {

@@ -26,6 +26,8 @@ public class IdentityVerificationDTO implements Serializable {
 
     @NotNull
     private LocalDate dateOfBirth;
+    
+    private Long applicationProspectId;
 
     public Long getId() {
         return id;
@@ -75,7 +77,16 @@ public class IdentityVerificationDTO implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    @Override
+    
+    public Long getApplicationProspectId() {
+		return applicationProspectId;
+	}
+
+	public void setApplicationProspectId(Long applicationProspectId) {
+		this.applicationProspectId = applicationProspectId;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

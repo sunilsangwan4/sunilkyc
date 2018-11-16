@@ -48,13 +48,13 @@ export const investmentPotentialRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'investment-potential/new',
+        path: 'investment-potential/new/:prospectId',
         component: InvestmentPotentialUpdateComponent,
         resolve: {
             investmentPotential: InvestmentPotentialResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.investmentPotential.home.title'
         },
         canActivate: [UserRouteAccessService]

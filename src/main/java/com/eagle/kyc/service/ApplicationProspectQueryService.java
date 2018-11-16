@@ -132,6 +132,10 @@ public class ApplicationProspectQueryService extends QueryService<ApplicationPro
                 specification = specification.and(buildSpecification(criteria.getBankInformationId(),
                     root -> root.join(ApplicationProspect_.bankInformations, JoinType.LEFT).get(BankInformation_.id)));
             }
+            if (criteria.getIdentityVerificationId() != null) {
+                specification = specification.and(buildSpecification(criteria.getIdentityVerificationId(),
+                    root -> root.join(ApplicationProspect_.identityVerification, JoinType.LEFT).get(IdentityVerification_.id)));
+            }
         }
         return specification;
     }

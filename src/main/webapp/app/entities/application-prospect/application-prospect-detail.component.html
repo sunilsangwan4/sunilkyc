@@ -55,6 +55,12 @@
                         <a [routerLink]="['/depository-info', applicationProspect.depositoryId, 'view']">{{applicationProspect.depositoryId}}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="kyc5App.applicationProspect.identityVerification">Identity Verification</span></dt>
+                <dd>
+                    <div *ngIf="applicationProspect.identityVerificationId">
+                        <a [routerLink]="['/identity-verification', applicationProspect.identityVerificationId, 'view']">{{applicationProspect.identityVerificationId}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"
