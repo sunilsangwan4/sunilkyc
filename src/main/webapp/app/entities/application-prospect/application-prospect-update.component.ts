@@ -65,7 +65,7 @@ export class ApplicationProspectUpdateComponent implements OnInit {
     }
 
     verifyOTP() {
-        if (this.otp == this.filledOTP) {
+        if (this.otp === this.filledOTP) {
             this.verified = true;
         }
     }
