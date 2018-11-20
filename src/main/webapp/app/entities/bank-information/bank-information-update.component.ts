@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JhiAlertService } from 'ng-jhipster';
 
 import { IBankInformation } from 'app/shared/model/bank-information.model';
 import { BankInformationService } from './bank-information.service';
-import { IApplicationProspect } from 'app/shared/model/application-prospect.model';
+import { IApplicationProspect, ApplicationProspect } from 'app/shared/model/application-prospect.model';
 import { ApplicationProspectService } from 'app/entities/application-prospect';
 
 @Component({
@@ -16,14 +16,15 @@ import { ApplicationProspectService } from 'app/entities/application-prospect';
 export class BankInformationUpdateComponent implements OnInit {
     bankInformation: IBankInformation;
     isSaving: boolean;
-
-    applicationprospects: IApplicationProspect[];
+    applicationProspect: IApplicationProspect;
+    prospectId: number;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private bankInformationService: BankInformationService,
         private applicationProspectService: ApplicationProspectService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -31,16 +32,20 @@ export class BankInformationUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ bankInformation }) => {
             this.bankInformation = bankInformation;
         });
-        this.applicationProspectService.query().subscribe(
-            (res: HttpResponse<IApplicationProspect[]>) => {
-                this.applicationprospects = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+
+        this.activatedRoute.params.subscribe(params => {
+            this.prospectId = params.prospectId; // --> Name must match wanted parameter
+        });
+        this.applicationProspectService
+            .find(this.prospectId)
+            .subscribe(
+                (res: HttpResponse<IApplicationProspect>) => (this.applicationProspect = res.body),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
     }
 
     previousState() {
-        window.history.back();
+        this.router.navigate(['nominee', this.applicationProspect.nomineeId, 'edit', this.prospectId]);
     }
 
     save() {
@@ -53,12 +58,11 @@ export class BankInformationUpdateComponent implements OnInit {
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<IBankInformation>>) {
-        result.subscribe((res: HttpResponse<IBankInformation>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+        result.subscribe((res: HttpResponse<IBankInformation>) => this.onSaveSuccess(res), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
-        this.isSaving = false;
-        this.previousState();
+    private onSaveSuccess(res: HttpResponse<IBankInformation>) {
+        alert('Done ,Thank You ! We are happy to add other feature on request');
     }
 
     private onSaveError() {

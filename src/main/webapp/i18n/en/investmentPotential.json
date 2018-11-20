@@ -4,8 +4,8 @@
         "investmentPotential" : {
             "home": {
                 "title": "Investment Potentials",
-                "createLabel": "Create a new Investment Potential",
-                "createOrEditLabel": "Create or edit a Investment Potential"
+                "createLabel": "Declaring below details will help us to build your profile",
+                "createOrEditLabel": "Declaring below details will help us to build your profile"
             },
             "created": "A new Investment Potential is created with identifier {{ param }}",
             "updated": "A Investment Potential is updated with identifier {{ param }}",
@@ -21,9 +21,9 @@
             "annualIncome": "Annual Income",
             "netWorth": "Net Worth",
             "networthDeclarationDate": "Networth Declaration Date",
-            "pepRelative": "Pep Relative",
-            "pmlaRiskCategory": "Pmla Risk Category",
-            "pmlaRiskCategoryReason": "Pmla Risk Category Reason",
+            "pepRelative": "PEP/PEP Relative",
+            "pmlaRiskCategory": "PMLA Risk Category",
+            "pmlaRiskCategoryReason": "PMLA Risk Category Reason",
             "applicationProspect": "Application Prospect"
         }
     }

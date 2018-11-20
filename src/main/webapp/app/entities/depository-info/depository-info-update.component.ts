@@ -6,7 +6,7 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IDepositoryInfo } from 'app/shared/model/depository-info.model';
 import { DepositoryInfoService } from './depository-info.service';
-import { IApplicationProspect } from 'app/shared/model/application-prospect.model';
+import { IApplicationProspect, ApplicationProspect } from 'app/shared/model/application-prospect.model';
 import { ApplicationProspectService } from 'app/entities/application-prospect';
 
 @Component({
@@ -46,7 +46,7 @@ export class DepositoryInfoUpdateComponent implements OnInit {
     }
 
     previousState() {
-        window.history.back();
+        this.router.navigate(['trading-info', this.applicationProspect.tradingInfoId, 'edit', this.prospectId]);
     }
 
     save() {
@@ -65,8 +65,17 @@ export class DepositoryInfoUpdateComponent implements OnInit {
     private onSaveSuccess(res: HttpResponse<IDepositoryInfo>) {
         this.isSaving = false;
         this.applicationProspect.depositoryId = res.body.id;
-        this.applicationProspectService.update(this.applicationProspect);
-        this.router.navigate(['investment-potential/new', this.prospectId]);
+        this.applicationProspectService
+            .update(this.applicationProspect)
+            .subscribe(
+                (response: HttpResponse<ApplicationProspect>) => (this.applicationProspect = response.body),
+                (response: HttpErrorResponse) => this.onSaveError()
+            );
+        if (this.applicationProspect.investmentPotentialId !== null) {
+            this.router.navigate(['investment-potential', this.applicationProspect.investmentPotentialId, 'edit', this.prospectId]);
+        } else {
+            this.router.navigate(['investment-potential/new', this.prospectId]);
+        }
     }
 
     private onSaveError() {

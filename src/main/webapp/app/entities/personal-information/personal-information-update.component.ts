@@ -6,7 +6,7 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IPersonalInformation } from 'app/shared/model/personal-information.model';
 import { PersonalInformationService } from './personal-information.service';
-import { IApplicationProspect } from 'app/shared/model/application-prospect.model';
+import { IApplicationProspect, ApplicationProspect } from 'app/shared/model/application-prospect.model';
 import { ApplicationProspectService } from 'app/entities/application-prospect';
 
 @Component({
@@ -48,7 +48,7 @@ export class PersonalInformationUpdateComponent implements OnInit {
     }
 
     previousState() {
-        window.history.back();
+        this.router.navigate(['identity-verification', this.applicationProspect.identityVerificationId, 'edit', this.prospectId]);
     }
 
     save() {
@@ -70,8 +70,17 @@ export class PersonalInformationUpdateComponent implements OnInit {
     private onSaveSuccess(personalInformation: IPersonalInformation) {
         this.isSaving = false;
         this.applicationProspect.personalInformationId = personalInformation.id;
-        this.applicationProspectService.update(this.applicationProspect);
-        this.router.navigate(['trading-info/new', this.prospectId]);
+        this.applicationProspectService
+            .update(this.applicationProspect)
+            .subscribe(
+                (res: HttpResponse<ApplicationProspect>) => (this.applicationProspect = res.body),
+                (res: HttpErrorResponse) => this.onSaveError()
+            );
+        if (this.applicationProspect.tradingInfoId !== null) {
+            this.router.navigate(['trading-info', this.applicationProspect.tradingInfoId, 'edit', this.prospectId]);
+        } else {
+            this.router.navigate(['trading-info/new', this.prospectId]);
+        }
     }
 
     private onSaveError() {

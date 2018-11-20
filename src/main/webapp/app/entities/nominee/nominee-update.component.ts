@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
@@ -7,7 +7,7 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { INominee } from 'app/shared/model/nominee.model';
 import { NomineeService } from './nominee.service';
-import { IApplicationProspect } from 'app/shared/model/application-prospect.model';
+import { IApplicationProspect, ApplicationProspect } from 'app/shared/model/application-prospect.model';
 import { ApplicationProspectService } from 'app/entities/application-prospect';
 
 @Component({
@@ -17,15 +17,16 @@ import { ApplicationProspectService } from 'app/entities/application-prospect';
 export class NomineeUpdateComponent implements OnInit {
     nominee: INominee;
     isSaving: boolean;
-
-    applicationprospects: IApplicationProspect[];
     dateOfBirthDp: any;
+    applicationProspect: IApplicationProspect;
+    prospectId: number;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private nomineeService: NomineeService,
         private applicationProspectService: ApplicationProspectService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -33,16 +34,19 @@ export class NomineeUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ nominee }) => {
             this.nominee = nominee;
         });
-        this.applicationProspectService.query().subscribe(
-            (res: HttpResponse<IApplicationProspect[]>) => {
-                this.applicationprospects = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.activatedRoute.params.subscribe(params => {
+            this.prospectId = params.prospectId; // --> Name must match wanted parameter
+        });
+        this.applicationProspectService
+            .find(this.prospectId)
+            .subscribe(
+                (res: HttpResponse<IApplicationProspect>) => (this.applicationProspect = res.body),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
     }
 
     previousState() {
-        window.history.back();
+        this.router.navigate(['investment-potential', this.applicationProspect.investmentPotentialId, 'edit', this.prospectId]);
     }
 
     save() {
@@ -55,12 +59,19 @@ export class NomineeUpdateComponent implements OnInit {
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<INominee>>) {
-        result.subscribe((res: HttpResponse<INominee>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+        result.subscribe((res: HttpResponse<INominee>) => this.onSaveSuccess(res), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
-        this.isSaving = false;
-        this.previousState();
+    private onSaveSuccess(res: HttpResponse<INominee>) {
+        this.applicationProspect.nomineeId = res.body.id;
+        this.applicationProspectService
+            .update(this.applicationProspect)
+            .subscribe(
+                (response: HttpResponse<ApplicationProspect>) => (this.applicationProspect = response.body),
+                (response: HttpErrorResponse) => this.onSaveError()
+            );
+
+        this.router.navigate(['bank-information/new', this.prospectId]);
     }
 
     private onSaveError() {

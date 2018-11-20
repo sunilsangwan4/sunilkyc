@@ -60,7 +60,7 @@ export const identityVerificationRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'identity-verification/:id/edit',
+        path: 'identity-verification/:id/edit/:prospectId',
         component: IdentityVerificationUpdateComponent,
         resolve: {
             identityVerification: IdentityVerificationResolve

@@ -48,25 +48,25 @@ export const bankInformationRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'bank-information/new',
+        path: 'bank-information/new/:prospectId',
         component: BankInformationUpdateComponent,
         resolve: {
             bankInformation: BankInformationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.bankInformation.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'bank-information/:id/edit',
+        path: 'bank-information/:id/edit/:prospectId',
         component: BankInformationUpdateComponent,
         resolve: {
             bankInformation: BankInformationResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.bankInformation.home.title'
         },
         canActivate: [UserRouteAccessService]

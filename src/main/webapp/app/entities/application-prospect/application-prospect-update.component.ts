@@ -65,7 +65,7 @@ export class ApplicationProspectUpdateComponent implements OnInit {
     }
 
     verifyOTP() {
-        if (this.otp === this.filledOTP) {
+        if (this.otp == this.filledOTP) {
             this.verified = true;
         }
     }
@@ -92,7 +92,16 @@ export class ApplicationProspectUpdateComponent implements OnInit {
     private onSaveSuccess(res: HttpResponse<IApplicationProspect>) {
         this.isSaving = false;
         this.localStorage.store('prospectId', res.body.id);
-        this.router.navigate(['identity-verification/new', this.localStorage.retrieve('prospectId')]);
+        if (this.applicationProspect.identityVerificationId !== undefined) {
+            this.router.navigate([
+                'identity-verification',
+                this.applicationProspect.identityVerificationId,
+                'edit',
+                this.localStorage.retrieve('prospectId')
+            ]);
+        } else {
+            this.router.navigate(['identity-verification/new', this.localStorage.retrieve('prospectId')]);
+        }
     }
 
     private onSaveError() {

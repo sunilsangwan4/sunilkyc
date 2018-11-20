@@ -9,10 +9,10 @@ const ADMIN_ROUTES = [auditsRoute, configurationRoute, docsRoute, healthRoute, l
 export const adminState: Routes = [
     {
         path: '',
+        redirectTo: '/application-prospect',
         data: {
             authorities: ['ROLE_ADMIN']
         },
-        canActivate: [UserRouteAccessService],
-        children: ADMIN_ROUTES
+        canActivate: [UserRouteAccessService]
     }
 ];

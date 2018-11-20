@@ -3,6 +3,7 @@
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
             <h5 style="width: 83%" class="header-content" id="jhi-personal-information-heading" jhiTranslate="kyc5App.personalInformation.home.createOrEditLabel">Create or edit a Personal Information</h5> 
             <jhi-alert-error></jhi-alert-error>
+            
             <div class="row">
                 <div class="col-5">
                     <div class="form-group">
@@ -155,7 +156,9 @@
 
             </div>
             <div>
-
+                <button type="button" id="cancel-save" class="btn btn-primary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span >Previous</span>
+                </button>
                 <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;
                     <span>Save & Next</span>

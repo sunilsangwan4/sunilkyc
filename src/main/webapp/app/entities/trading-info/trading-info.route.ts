@@ -60,13 +60,13 @@ export const tradingInfoRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'trading-info/:id/edit',
+        path: 'trading-info/:id/edit/:prospectId',
         component: TradingInfoUpdateComponent,
         resolve: {
             tradingInfo: TradingInfoResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.tradingInfo.home.title'
         },
         canActivate: [UserRouteAccessService]

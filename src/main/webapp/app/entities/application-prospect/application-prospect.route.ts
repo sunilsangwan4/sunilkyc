@@ -34,7 +34,7 @@ export const applicationProspectRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             defaultSort: 'id,asc',
             pageTitle: 'kyc5App.applicationProspect.home.title'
         },
@@ -65,13 +65,13 @@ export const applicationProspectRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'application-prospect/:id/edit',
+        path: 'application-prospect/:id/edit/:prospectId',
         component: ApplicationProspectUpdateComponent,
         resolve: {
             applicationProspect: ApplicationProspectResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.applicationProspect.home.title'
         },
         canActivate: [UserRouteAccessService]

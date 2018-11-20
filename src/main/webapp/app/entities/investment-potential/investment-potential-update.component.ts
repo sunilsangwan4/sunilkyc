@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
@@ -7,7 +7,7 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IInvestmentPotential } from 'app/shared/model/investment-potential.model';
 import { InvestmentPotentialService } from './investment-potential.service';
-import { IApplicationProspect } from 'app/shared/model/application-prospect.model';
+import { IApplicationProspect, ApplicationProspect } from 'app/shared/model/application-prospect.model';
 import { ApplicationProspectService } from 'app/entities/application-prospect';
 
 @Component({
@@ -18,14 +18,17 @@ export class InvestmentPotentialUpdateComponent implements OnInit {
     investmentPotential: IInvestmentPotential;
     isSaving: boolean;
 
-    applicationprospects: IApplicationProspect[];
+    applicationProspect: IApplicationProspect;
+    prospectId: number;
+
     networthDeclarationDateDp: any;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private investmentPotentialService: InvestmentPotentialService,
         private applicationProspectService: ApplicationProspectService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -33,16 +36,20 @@ export class InvestmentPotentialUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ investmentPotential }) => {
             this.investmentPotential = investmentPotential;
         });
-        this.applicationProspectService.query().subscribe(
-            (res: HttpResponse<IApplicationProspect[]>) => {
-                this.applicationprospects = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.activatedRoute.params.subscribe(params => {
+            this.prospectId = params.prospectId; // --> Name must match wanted parameter
+        });
+        this.applicationProspectService
+            .find(this.prospectId)
+            .subscribe(
+                (res: HttpResponse<IApplicationProspect>) => (this.applicationProspect = res.body),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+        this.investmentPotential.pepRelative = 'N';
     }
 
     previousState() {
-        window.history.back();
+        this.router.navigate(['depository-info', this.applicationProspect.depositoryId, 'edit', this.prospectId]);
     }
 
     save() {
@@ -55,12 +62,25 @@ export class InvestmentPotentialUpdateComponent implements OnInit {
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<IInvestmentPotential>>) {
-        result.subscribe((res: HttpResponse<IInvestmentPotential>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+        result.subscribe(
+            (res: HttpResponse<IInvestmentPotential>) => this.onSaveSuccess(res),
+            (res: HttpErrorResponse) => this.onSaveError()
+        );
     }
 
-    private onSaveSuccess() {
-        this.isSaving = false;
-        this.previousState();
+    private onSaveSuccess(res: HttpResponse<IInvestmentPotential>) {
+        this.applicationProspect.investmentPotentialId = res.body.id;
+        this.applicationProspectService
+            .update(this.applicationProspect)
+            .subscribe(
+                (response: HttpResponse<ApplicationProspect>) => (this.applicationProspect = response.body),
+                (response: HttpErrorResponse) => this.onSaveError()
+            );
+        if (this.applicationProspect.nomineeId !== null) {
+            this.router.navigate(['nominee', this.applicationProspect.nomineeId, 'edit', this.prospectId]);
+        } else {
+            this.router.navigate(['nominee/new', this.prospectId]);
+        }
     }
 
     private onSaveError() {

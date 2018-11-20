@@ -48,7 +48,7 @@ export class IdentityVerificationUpdateComponent implements OnInit {
     }
 
     previousState() {
-        window.history.back();
+        this.router.navigate(['application-prospect', this.prospectId, 'edit', this.prospectId]);
     }
 
     save() {
@@ -70,8 +70,17 @@ export class IdentityVerificationUpdateComponent implements OnInit {
     private onSaveSuccess(res: HttpResponse<IIdentityVerification>) {
         this.isSaving = false;
         this.applicationProspect.identityVerificationId = res.body.id;
-        this.applicationProspectService.update(this.applicationProspect);
-        this.router.navigate(['personal-information/new', this.prospectId]);
+        this.applicationProspectService
+            .update(this.applicationProspect)
+            .subscribe(
+                (response: HttpResponse<ApplicationProspect>) => (this.applicationProspect = response.body),
+                (response: HttpErrorResponse) => this.onSaveError()
+            );
+        if (this.applicationProspect.personalInformationId === null) {
+            this.router.navigate(['personal-information/new', this.prospectId]);
+        } else {
+            this.router.navigate(['personal-information', this.applicationProspect.personalInformationId, 'edit', this.prospectId]);
+        }
     }
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);

@@ -48,25 +48,25 @@ export const nomineeRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'nominee/new',
+        path: 'nominee/new/:prospectId',
         component: NomineeUpdateComponent,
         resolve: {
             nominee: NomineeResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.nominee.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'nominee/:id/edit',
+        path: 'nominee/:id/edit/:prospectId',
         component: NomineeUpdateComponent,
         resolve: {
             nominee: NomineeResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'kyc5App.nominee.home.title'
         },
         canActivate: [UserRouteAccessService]
